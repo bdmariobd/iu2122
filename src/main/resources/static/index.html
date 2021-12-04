@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" name="labels" placeholder="Etiquetas" required>
                         </div>
                         <div class="col-md-6">
-                            <fieldset class="estrellitas">
+                            <fieldset class="estrellitas rating">
                                 <label title="Atómico - 5 estrellas">
                                         <input type="radio" name="rating" value="5" />
                                     </label>
@@ -114,7 +114,84 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">IU 2021-22</a>
+            <a class="navbar-brand" href="#">🎬</a>
+
+            <div>
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <input type="search" class="form-control" id="movieSearch" placeholder="Buscar por título o nombre" aria-describedby="searchMovieLabel">
+                            <span class="input-group-text" id="searchMovieLabel">🔍</span>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- filtros aplicados -->
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- collapse filtros -->
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
+                          </button>
+
+                        <div class="collapse" id="collapseExample">
+
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                <label for="floatingInputGrid">Tags</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                <label for="floatingInputGrid">Tags de grupo </label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                <label for="floatingInputGrid">Año</label>
+                            </div>
+                            <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración mínima: </label>
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                                <label for="floatingInputGrid">Minutos</label>
+                            </div>
+                            <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración máxima: </label>
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                                <label for="floatingInputGrid">Minutos</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                <label for="floatingInputGrid">Director</label>
+                            </div>
+
+                            <fieldset class="estrellitas rating">
+                                <label title="Atómico - 5 estrellas">
+                                                    <input type="radio" name="rating" value="5" />
+                                                </label>
+
+                                <label title="Muy buena - 4 estrellas">
+                                                    <input type="radio" name="rating" value="4" />
+                                                </label>
+
+                                <label title="Pasable - 3 estrellas">
+                                                    <input type="radio" name="rating" value="3" />
+                                                </label>
+
+                                <label title="Más bien mala - 2 estrellas">
+                                                    <input type="radio" name="rating" value="2" />
+                                                </label>
+
+                                <label title="Horrible - 1 estrella">
+                                                    <input type="radio" name="rating" value="1" />
+                                                </label>
+                            </fieldset>
+                        </div>
+                    </li>
+
+
+            </div>
+
+
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -122,47 +199,57 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         ➕
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         👥
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Mis grupos</a></li>
+                            <li><a class="dropdown-item" href="#">Otros grupos</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Peticiones</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
+
+
+        </div>
         </div>
     </nav>
 
-    <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-            <div class="col-sm-4 iulist">
-                <div class="row">
-                    <div class="col-auto">
-                        <h2>Peliculas </h2>
-                    </div>
-                    <div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
-                        <span class="input-group-text" id="searchMovieLabel">🔍</span>
-                    </div>
-                </div>
+    <!--Navtab-->
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="col iulist">
                 <div class="accordion" id="movies">
                 </div>
+
+                <!-- queremos a partir de aqui todo esto oculto -->
                 <div id="addMovie" class="formularioValidado">
                     <h3>Añadir película</h3>
                     <form class="row">
@@ -194,134 +281,30 @@
                     </form>
                 </div>
             </div>
-
-            <div class="col-sm-4 iulist">
-                <h2>Grupos</h2>
-                <div id="groups">
-
-                </div>
-                <div id="addGroup">
-
-                </div>
-            </div>
-
-            <div class="col-sm-4 iulist">
-                <h2>Usuarios</h2>
-                <div id="users">
-
-                </div>
-                <div id="addUser">
-
-                </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div id="groups">
             </div>
         </div>
-        <hr>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div id="users">
+            </div>
+        </div>
+    </div>
+
+    <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-8 anuncio">
-                <h2>Ejemplo de formulario con validación y menú emergente</h2>
-                <form method="post" id="form-anuncio">
-                    <div class="form-row datos-anuncio">
-                        <div class="form-group col-md-6">
-                            <label for="inputTitulo">Título del anuncio</label>
-                            <input type="text" class="form-control" id="inputTitulo" placeholder="Vendo Moto" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputCategorias">Categorías</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" readonly id="inputCategorias" placeholder="(ninguna)">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalSeleccionCategoria">
-                                        Cambiar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row texto-anuncio">
-                        <div class="form-group col">
-                            <label for="inputTextoAnuncio">Cuerpo del
-                                anuncio</label>
-                            <textarea id="inputTextoAnuncio" class="form-control">
-Hello, World!
-                </textarea>
-                        </div>
-                    </div>
-                    <!-- botón para enviar el formulario; justify-content-end lo justifica a la derecha -->
-                    <div class="form-row justify-content-end">
-                        <button type="submit" id="boton-publicar" class="btn btn-primary">Publicar anuncio
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
 
-            <div id="dropdownBuscablePelis" class="form-group col-md-4">
-                <h2>Ejemplo de dropdown con peliculas</h2>
-                <div class="row-md-4">
-                    <input id="busqueda" type="search" class="form-control" placeholder="Filtrar por titulo" />
-                </div>
-                <div class="row-md-4">
-                    <select class="multiple from-control" multiple size="6">
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                    </select>
-                </div>
-            </div>
+
+
+
 
         </div>
     </div>
 
-    <!-- Modal de selección de categorías (lanzado por un botón) -->
-    <div class="modal fade" id="modalSeleccionCategoria" tabindex="-1" role="dialog" aria-labelledby="tituloModalCategorias" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModalCategorias">Selección de Categorías de Anuncio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group" id="lista-categorias">
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="vehiculos">
-                            Vehículos
-                            <span class="badge bg-primary badge-pill">14</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="gangas">
-                            Gangas
-                            <span class="badge bg-primary badge-pill">2</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="vintage">
-                            Vintage
-                            <span class="badge bg-primary badge-pill">1</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="cat-larga">
-                            Otra categoría
-                            <span class="badge bg-primary badge-pill">2</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="cat-muylarga">
-                            Otra categoría
-                            <span class="badge bg-primary badge-pill">2</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center" id="cat-maslargatodavia">
-                            Otra categoría
-                            <span class="badge bg-primary badge-pill">2</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar
-                    </button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="button-save-cats">Guardar
-                        y
-                        salir
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
-    </div>
+
 
     <!-- JavaScript -->
 
