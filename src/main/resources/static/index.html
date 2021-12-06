@@ -114,116 +114,103 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">🎬</a>
-
-            <div>
-
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <form class="d-flex">
-                            <input type="search" class="form-control" id="movieSearch" placeholder="Buscar por título o nombre" aria-describedby="searchMovieLabel">
-                            <span class="input-group-text" id="searchMovieLabel">🔍</span>
-                        </form>
-                    </li>
-
-                    <li class="nav-item">
-                        <!-- filtros aplicados -->
-                    </li>
-
-                    <li class="nav-item">
-                        <!-- collapse filtros -->
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
-                          </button>
-
-                        <div class="collapse" id="collapseExample">
-
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                                <label for="floatingInputGrid">Tags</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                                <label for="floatingInputGrid">Tags de grupo </label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                                <label for="floatingInputGrid">Año</label>
-                            </div>
-                            <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración mínima: </label>
-                            <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
-                                <label for="floatingInputGrid">Minutos</label>
-                            </div>
-                            <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración máxima: </label>
-                            <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
-                                <label for="floatingInputGrid">Minutos</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                                <label for="floatingInputGrid">Director</label>
-                            </div>
-
-                            <fieldset class="estrellitas rating">
-                                <label title="Atómico - 5 estrellas">
-                                                    <input type="radio" name="rating" value="5" />
-                                                </label>
-
-                                <label title="Muy buena - 4 estrellas">
-                                                    <input type="radio" name="rating" value="4" />
-                                                </label>
-
-                                <label title="Pasable - 3 estrellas">
-                                                    <input type="radio" name="rating" value="3" />
-                                                </label>
-
-                                <label title="Más bien mala - 2 estrellas">
-                                                    <input type="radio" name="rating" value="2" />
-                                                </label>
-
-                                <label title="Horrible - 1 estrella">
-                                                    <input type="radio" name="rating" value="1" />
-                                                </label>
-                            </fieldset>
-                        </div>
-                    </li>
-
-
-            </div>
-
-
+            <a class="navbar-brand" href="#">🎬MovieRater</a>
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <!--barra de busqueda-->
+                <form class="d-flex">
+                    <input type="search" class="form-control me-2" id="movieSearch" placeholder="Buscar por título o nombre" aria-describedby="searchMovieLabel">
+                    <span class="input-group-text" id="searchMovieLabel">🔍</span>
+                </form>
+                <!-- filtros aplicados -->
+                <div class="filtros">
+                </div>
+                <!--selector de filtros-->
+                <div class="selector-filtros">
+                    <!-- collapse filtros -->
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
+                      </button>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         ➕
-                        </a>
+                    <div class="collapse" id="collapseExample">
 
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                            <label for="floatingInputGrid">Tags</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                            <label for="floatingInputGrid">Tags de grupo </label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                            <label for="floatingInputGrid">Año</label>
+                        </div>
+                        <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración mínima: </label>
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                            <label for="floatingInputGrid">Minutos</label>
+                        </div>
+                        <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración máxima: </label>
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                            <label for="floatingInputGrid">Minutos</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                            <label for="floatingInputGrid">Director</label>
+                        </div>
+
+                        <fieldset class="estrellitas rating">
+                            <label title="Atómico - 5 estrellas">
+                                                <input type="radio" name="rating" value="5" />
+                                            </label>
+
+                            <label title="Muy buena - 4 estrellas">
+                                                <input type="radio" name="rating" value="4" />
+                                            </label>
+
+                            <label title="Pasable - 3 estrellas">
+                                                <input type="radio" name="rating" value="3" />
+                                            </label>
+
+                            <label title="Más bien mala - 2 estrellas">
+                                                <input type="radio" name="rating" value="2" />
+                                            </label>
+
+                            <label title="Horrible - 1 estrella">
+                                                <input type="radio" name="rating" value="1" />
+                                            </label>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!--boton añadir peli-->
+            <div class="dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+         ➕
+        </a>
+            </div>
+            <!--boton usuarios-->
+            <div class="dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+         👥
+        </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Mis grupos</a></li>
+                    <li><a class="dropdown-item" href="#">Otros grupos</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
                     </li>
-
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         👥
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Mis grupos</a></li>
-                            <li><a class="dropdown-item" href="#">Otros grupos</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Peticiones</a></li>
-                        </ul>
-                    </li>
+                    <li><a class="dropdown-item" href="#">Peticiones</a></li>
                 </ul>
             </div>
-
 
         </div>
         </div>
