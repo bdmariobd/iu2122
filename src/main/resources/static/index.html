@@ -114,7 +114,40 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">🎬MovieRater</a>
+            
+            <!-- <a class="navbar-brand" id="peliculas-tab" data-bs-toggle="tab" data-bs-target="#pills-peliculas" type="button" role="tab" aria-controls="peliculas" aria-selected="false">
+                🎬MovieRater
+            </a> -->           
+
+            <div class="tab-content">
+                <div class="nav nav-tabs" id="myTab" role="tablist">
+                    <div class="nav-item">
+                        <a class="navbar-brand" id="peliculas-tab" data-bs-toggle="tab" data-bs-target="#pills-peliculas" role="tab" type="button" aria-controls="home" aria-selected="false">
+                            🎬MovieRater
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- <div class="tab-content" id="pills-peliculas">
+                <div class="tab-pane fade show active" id="pills-peliculas" role="tabpanel" aria-labelledby="pills-peliculas-tab">
+                    <div class="col iulist">
+                        <div class="accordion" id="movies">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!--<nav>
+                <a class="nav-tab" id="pills-peliculas" data-bs-toggle="tab" data-bs-target="#pills-movies" type="button" aria-controls="mis-peliculas">
+                    🎬MovieRater
+                </a>
+            </nav> -->
+
+
+
+       
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -133,59 +166,76 @@
                 <div class="selector-filtros">
                     <!-- collapse filtros -->
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
-                      </button>
+                    </button>
 
-                    <div class="collapse" id="collapseExample">
-
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                            <label for="floatingInputGrid">Tags</label>
+                    <!-- <div style="max-width: 500px;"> -->
+                    <div class="collapse collapse-horizontal" id="collapseExample">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                    <label for="floatingInputGrid">Tags</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                    <label for="floatingInputGrid">Tags de grupo </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                    <label for="floatingInputGrid">Año</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración mínima: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                                    <label for="floatingInputGrid">Minutos</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración máxima: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
+                                    <label for="floatingInputGrid">Minutos</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
+                                    <label for="floatingInputGrid">Director</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <fieldset class="estrellitas rating">
+                                    <label title="Atómico - 5 estrellas">
+                                            <input type="radio" name="rating" value="5" />
+                                    </label>
+                                    <label title="Muy buena - 4 estrellas">
+                                            <input type="radio" name="rating" value="4" />
+                                    </label>
+                                    <label title="Pasable - 3 estrellas">
+                                            <input type="radio" name="rating" value="3" />
+                                    </label>
+                                    <label title="Más bien mala - 2 estrellas">
+                                            <input type="radio" name="rating" value="2" />
+                                    </label>
+                                    <label title="Horrible - 1 estrella">
+                                            <input type="radio" name="rating" value="1" />
+                                    </label>
+                                </fieldset>
+                            </div>
                         </div>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                            <label for="floatingInputGrid">Tags de grupo </label>
-                        </div>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                            <label for="floatingInputGrid">Año</label>
-                        </div>
-                        <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración mínima: </label>
-                        <div class="form-floating">
-                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
-                            <label for="floatingInputGrid">Minutos</label>
-                        </div>
-                        <label for="floatingInputGrid" class="col-sm-2 col-form-label">Duración máxima: </label>
-                        <div class="form-floating">
-                            <input type="number" class="form-control" id="floatingInputGrid" placeholder="uwu" min="0">
-                            <label for="floatingInputGrid">Minutos</label>
-                        </div>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
-                            <label for="floatingInputGrid">Director</label>
-                        </div>
-
-                        <fieldset class="estrellitas rating">
-                            <label title="Atómico - 5 estrellas">
-                                                <input type="radio" name="rating" value="5" />
-                                            </label>
-
-                            <label title="Muy buena - 4 estrellas">
-                                                <input type="radio" name="rating" value="4" />
-                                            </label>
-
-                            <label title="Pasable - 3 estrellas">
-                                                <input type="radio" name="rating" value="3" />
-                                            </label>
-
-                            <label title="Más bien mala - 2 estrellas">
-                                                <input type="radio" name="rating" value="2" />
-                                            </label>
-
-                            <label title="Horrible - 1 estrella">
-                                                <input type="radio" name="rating" value="1" />
-                                            </label>
-                        </fieldset>
                     </div>
+                    <!--</div> -->
+                    
                 </div>
 
 
@@ -194,44 +244,88 @@
             <!--boton añadir peli-->
             <div class="dropdown">
                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-         ➕
-        </a>
+                ➕
+                </a>
             </div>
             <!--boton usuarios-->
             <div class="dropdown">
-                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-         👥
-        </a>
+
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-target="#pills-pro" data-bs-toggle="dropdown" aria-expanded="false">
+                👥
+                </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Mis grupos</a></li>
-                    <li><a class="dropdown-item" href="#">Otros grupos</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+
+                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-mis-grupos" type="button" role="tab" aria-controls="home" aria-selected="false">
+                                Mis grupos
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-otros-grupos" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                Otros grupos
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
+                                Peticiones
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="peticiones-tab" data-bs-toggle="tab" data-bs-target="#pills-peticiones" type="button" role="tab" aria-controls="peticiones" aria-selected="false">Mis grupos</button>
+                       
                     </li>
-                    <li><a class="dropdown-item" href="#">Peticiones</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            Otros grupos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Peticiones</a>
+                    </li> -->
+
+
+                   
                 </ul>
+ 
             </div>
 
         </div>
-        </div>
+
     </nav>
 
     <!--Navtab-->
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            <button class="nav-link active" id="mis-grupos-tab" data-bs-toggle="tab" data-bs-target="#pills-mis-grupos" type="button" role="tab" aria-controls="mis-grupos" aria-selected="true">
+                Movies
+            </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+            <button class="nav-link" id="otros-grupos-tab" data-bs-toggle="tab" data-bs-target="#pills-otros-grupos" type="button" role="tab" aria-controls="otros-grupos" aria-selected="false">
+                Profile
+            </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+            <button class="nav-link" id="peticiones-tab" data-bs-toggle="tab" data-bs-target="#pills-peticiones" type="button" role="tab" aria-controls="peticiones" aria-selected="false">
+                Groups
+            </button>
         </li>
-    </ul>
+    </ul> -->
 
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="tab-pane fade show active" id="pills-peliculas" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="col iulist">
                 <div class="accordion" id="movies">
                 </div>
@@ -269,15 +363,23 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+        <div class="tab-pane fade show active" id="pills-mis-peliculas" role="tabpanel" aria-labelledby="pills-peliculas-tab">
+            <div class="accordion" id="movies">
+        </div>
+        </div> 
+        <div class="tab-pane fade" id="pills-mis-grupos" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div id="groups">
             </div>
         </div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="tab-pane fade" id="pills-otros-grupos" role="tabpanel" aria-labelledby="pills-contact-tab">
             <div id="users">
             </div>
         </div>
+      
+
     </div>
+
 
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid">
