@@ -96,7 +96,7 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
-    <div class="card" data-id="${movie.id}">
+    <div class="card moviePreview" data-id="${movie.id}">
     <div class="card-header"">
         <h4 class="mb-0" title="${movie.id}">
             ${movie.name} <small><i>(${movie.year})</i></small>
@@ -120,6 +120,7 @@ function createMovieItem(movie) {
                         <button class="rm" data-id="${movie.id}">🗑️</button>
                         <button class="edit" data-id="${movie.id}">✏️</button>
                         <button class="rate" data-id="${movie.id}">⭐</button>
+                        <button class="details" data-id="${movie.id}">ℹ️</button>
                     </div>  
                 </div>
             </div>
@@ -417,6 +418,16 @@ function update() {
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
 
+        //modal detalles de cada película
+        document.querySelectorAll(".iucontrol.movie button.details").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const movie = Pmgr.resolve(id);
+                const movieData = document.querySelector("#movieDetails");
+                movieData.querySelector(`img`).src = `${serverUrl}poster/${movie.imdb}`;
+                movieData.querySelector(`h1`).innerHTML = movie.name;
+                modalDetailsMovie.show(); // ya podemos mostrar el formulario
+            }));
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -440,6 +451,8 @@ function update() {
 // modales, para poder abrirlos y cerrarlos desde código JS
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
+const modalDetailsMovie = new bootstrap.Modal(document.querySelector('#movieDetailsModal'));
+
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
@@ -537,6 +550,8 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
 window.modalRateMovie = modalRateMovie;
+window.modalDetailsMovie = modalDetailsMovie;
+
 window.update = update;
 window.login = login;
 window.userId = userId;

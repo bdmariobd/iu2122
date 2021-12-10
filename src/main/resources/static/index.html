@@ -109,15 +109,37 @@
             </div>
         </div>
     </div>
+    <!-- Modal con los detalles de la pelicula películas -->
+    <div class="modal fade" id="movieDetailsModal" tabindex="-1" aria-labelledby="movieDetailsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movieDetailsLabel">Detalles de la pelicula</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="movieDetails">
+                        <!-- llenar desde JS -->
+                        <img>
+                        <h1></h1>
+                    </div>
 
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary edit">Guardar cambios</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            
+
             <!-- <a class="navbar-brand" id="peliculas-tab" data-bs-toggle="tab" data-bs-target="#pills-peliculas" type="button" role="tab" aria-controls="peliculas" aria-selected="false">
                 🎬MovieRater
-            </a> -->           
+            </a> -->
 
             <div class="tab-content">
                 <div class="nav nav-tabs" id="myTab" role="tablist">
@@ -126,7 +148,7 @@
                             🎬MovieRater
                         </a>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -147,7 +169,7 @@
 
 
 
-       
+
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -235,7 +257,7 @@
                         </div>
                     </div>
                     <!--</div> -->
-                    
+
                 </div>
 
 
@@ -270,14 +292,14 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        
+
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">
                                 Peticiones
                             </a>
                         </li>
                     </ul>
-                    
+
                     <!-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="peticiones-tab" data-bs-toggle="tab" data-bs-target="#pills-peticiones" type="button" role="tab" aria-controls="peticiones" aria-selected="false">Mis grupos</button>
                        
@@ -294,9 +316,9 @@
                     </li> -->
 
 
-                   
+
                 </ul>
- 
+
             </div>
 
         </div>
@@ -366,8 +388,8 @@
 
         <div class="tab-pane fade show active" id="pills-mis-peliculas" role="tabpanel" aria-labelledby="pills-peliculas-tab">
             <div class="accordion" id="movies">
+            </div>
         </div>
-        </div> 
         <div class="tab-pane fade" id="pills-mis-grupos" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div id="groups">
             </div>
@@ -376,7 +398,7 @@
             <div id="users">
             </div>
         </div>
-      
+
 
     </div>
 
