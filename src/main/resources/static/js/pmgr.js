@@ -96,32 +96,45 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
-    <div class="card moviePreview" data-id="${movie.id}">
-    <div class="card-header"">
-        <h4 class="mb-0" title="${movie.id}">
-            ${movie.name} <small><i>(${movie.year})</i></small>
-        </h4>
-    </div>
-
-    <div>
-        <div class="card-body pcard">
-            <div class="row">
-                <div class="col-auto">
-                    <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/>
-                </div>
-                <div class="col">
-                    <div class="row-12">
-                        ${movie.director} / ${movie.actors} (${movie.minutes} min.)
-                    </div>        
-                    <div class="row-12">
-                        ${ratings}
-                    </div>        
-                    <div class="iucontrol movie">
-                        <button class="rm" data-id="${movie.id}">🗑️</button>
-                        <button class="edit" data-id="${movie.id}">✏️</button>
-                        <button class="rate" data-id="${movie.id}">⭐</button>
-                        <button class="details" data-id="${movie.id}">ℹ️</button>
-                    </div>  
+    <div class="card moviePreview row" data-id="${movie.id}">
+                    <div class="card-header" ">
+                        <h4 class="mb-0 " title="${movie.id} ">
+                            ${movie.name} <small><i>(${movie.year})</i></small>
+                        </h4>
+                    </div>
+                
+                    <div>
+                        <div class="card-body pcard ">
+                            <div class="row align-items-center justify-content-evenly ">
+                                <div class="col">
+                                    <img class="iuthumb " src="${serverUrl}poster/${movie.imdb} "/>
+                                </div>
+                                <div class="col-3 movie-info ">
+                                    <div class="row-12 ">
+                                        Titulo: ${movie.name}
+                                    </div>        
+                                    <div class="row-12 ">
+                                        Director: ${movie.director}
+                                    </div>
+                                    <div class="row-12 ">
+                                        Año: ${movie.year}
+                                    </div>        
+                                    <div class="row-12 ">
+                                        Duracion: ${movie.minutes} min
+                                    </div>          
+                                </div>
+                                <div class = "col-3 movie-rating ">
+                                    <!-- Aqui lo del rating -->
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <div class = "col movie-settings ">
+                                    <!-- meter esto en un dropdown -->
+                                    <div class="iucontrol movie ">
+                                        <button class="rm ">🗑️</button>
+                                        <button class="edit " data-id="${movie.id} ">✏️</button>
+                                        <button class="rate " data-id="${movie.id} ">⭐</button>
+                                        <button class="details " data-id="${movie.id} ">ℹ️</button>
+                                    </div>
                 </div>
             </div>
         </div>
