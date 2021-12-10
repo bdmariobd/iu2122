@@ -197,6 +197,15 @@ function createUserItem(user) {
 }
 
 /**
+ * 
+ * @param {*} idUser 
+ * @returns usuario con idUser es admin o no
+ */
+function isAdmin(idUser) {
+    return Pmgr.resolve(idUser).role === 'ADMIN,USER';
+}
+
+/**
  * Usa valores de un formulario para añadir una película
  * @param {Element} formulario para con los valores a subir
  */
@@ -532,6 +541,7 @@ window.update = update;
 window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
+window.isAdmin = isAdmin;
 
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
