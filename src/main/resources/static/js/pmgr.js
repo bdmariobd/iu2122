@@ -438,7 +438,12 @@ function update() {
                 const movie = Pmgr.resolve(id);
                 const movieData = document.querySelector("#movieDetails");
                 movieData.querySelector(`img`).src = `${serverUrl}poster/${movie.imdb}`;
-                movieData.querySelector(`h1`).innerHTML = movie.name;
+                movieData.querySelector(`h2`).innerHTML = movie.name;
+                movieData.querySelector(`label1`).innerHTML = movie.director;
+                movieData.querySelector(`label2`).innerHTML = movie.labels;
+                movieData.querySelector(`label3`).innerHTML = movie.year;
+                movieData.querySelector(`label4`).innerHTML = movie.minutes;
+                
                 modalDetailsMovie.show(); // ya podemos mostrar el formulario
             }));
 

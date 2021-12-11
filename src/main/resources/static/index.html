@@ -111,19 +111,61 @@
     </div>
     <!-- Modal con los detalles de la pelicula películas -->
     <div class="modal fade" id="movieDetailsModal" tabindex="-1" aria-labelledby="movieDetailsLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content modal-lg">
                 <div class="modal-header">
                     <h5 class="modal-title" id="movieDetailsLabel">Detalles de la pelicula</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row" id="movieDetails">
-                        <!-- llenar desde JS -->
-                        <img>
-                        <h1></h1>
-                    </div>
-
+                    <!-- <div class="container-fluid"> -->
+                        <div class="row" id="movieDetails">
+                            <!-- llenar desde JS -->
+                            <div class="col">
+                                <img>
+                                <h2></h2>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <label>Director: <label1></label1></label>
+                                </div>
+                                <div class="row">
+                                    <label>Etiquetas: <label2></label2></label>
+                                </div>
+                                <div class="row">
+                                    <label>Año: <label3></label3></label>
+                                </div>
+                                <div class="row">
+                                    <label>Duración: <label4></label4> minutos</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row" id="movieRateForm">
+                                    <fieldset class="estrellitas" >
+                                        <label title="Atómico - 5 estrellas">
+                                                <input type="radio" name="rating" value="5" />
+                                            </label>
+        
+                                        <label title="Muy buena - 4 estrellas">
+                                                <input type="radio" name="rating" value="4" />
+                                            </label>
+        
+                                        <label title="Pasable - 3 estrellas">
+                                                <input type="radio" name="rating" value="3" />
+                                            </label>
+        
+                                        <label title="Más bien mala - 2 estrellas">
+                                                <input type="radio" name="rating" value="2" />
+                                            </label>
+        
+                                        <label title="Horrible - 1 estrella">
+                                                <input type="radio" name="rating" value="1" />
+                                            </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
                 </div>
                 <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -188,11 +230,13 @@
                 <div class="selector-filtros">
                     <!-- collapse filtros -->
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
+                        Filtros
                     </button>
 
-                    <!-- <div style="max-width: 500px;"> -->
-                    <div class="collapse collapse-horizontal" id="collapseExample">
-                        <div class="row">
+                    <!-- CAMBIOS -->
+                    <div class="formularioValidado collapse collapse-horizontal" id="collapseExample">
+                        <form class="row">
+                    <!-- FIN CAMBIOS -->
                             <div class="col-md-4">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingInputGrid" placeholder="uwu">
@@ -254,7 +298,7 @@
                                     </label>
                                 </fieldset>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <!--</div> -->
 
@@ -279,7 +323,9 @@
 
                     <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-mis-grupos" type="button" role="tab" aria-controls="home" aria-selected="false">
+                            <!-- CAMBIO -->
+                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-mis-grupos" type="button" role="tab" aria-controls="home" aria-selected="false">
+                            <!-- FIN CAMBIO -->
                                 Mis grupos
                             </a>
                         </li>
