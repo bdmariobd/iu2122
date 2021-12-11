@@ -96,6 +96,7 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
+<<<<<<< HEAD
     <div class="card" data-id="${movie.id}">
     <div class="card-header"">
         <h4 class="mb-0" title="${movie.id}">
@@ -188,6 +189,47 @@ function createMovieItem(movie) {
                         <button class="edit" data-id="${movie.id}">✏️</button>
                         <button class="rate" data-id="${movie.id}">⭐</button>
                     </div>  
+=======
+    <div class="card moviePreview row" data-id="${movie.id}">
+                    <div class="card-header" ">
+                        <h4 class="mb-0 " title="${movie.id} ">
+                            ${movie.name} <small><i>(${movie.year})</i></small>
+                        </h4>
+                    </div>
+                
+                    <div>
+                        <div class="card-body pcard ">
+                            <div class="row align-items-center justify-content-evenly ">
+                                <div class="col">
+                                    <img class="iuthumb " src="${serverUrl}poster/${movie.imdb} "/>
+                                </div>
+                                <div class="col-3 movie-info ">
+                                    <div class="row-12 ">
+                                        Titulo: ${movie.name}
+                                    </div>        
+                                    <div class="row-12 ">
+                                        Director: ${movie.director}
+                                    </div>
+                                    <div class="row-12 ">
+                                        Año: ${movie.year}
+                                    </div>        
+                                    <div class="row-12 ">
+                                        Duracion: ${movie.minutes} min
+                                    </div>          
+                                </div>
+                                <div class = "col-3 movie-rating ">
+                                    <!-- Aqui lo del rating -->
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                                <div class = "col movie-settings ">
+                                    <!-- meter esto en un dropdown -->
+                                    <div class="iucontrol movie ">
+                                        <button class="rm ">🗑️</button>
+                                        <button class="edit " data-id="${movie.id} ">✏️</button>
+                                        <button class="rate " data-id="${movie.id} ">⭐</button>
+                                        <button class="details " data-id="${movie.id} ">ℹ️</button>
+                                    </div>
+>>>>>>> 443cd851cdc5ee0af5c251778db794613568e47a
                 </div>
             </div>
         </div>
@@ -261,6 +303,15 @@ function createUserItem(user) {
     </div>
     </div>
 `;
+}
+
+/**
+ * 
+ * @param {*} idUser 
+ * @returns usuario con idUser es admin o no
+ */
+function isAdmin(idUser) {
+    return Pmgr.resolve(idUser).role === 'ADMIN,USER';
 }
 
 /**
@@ -475,6 +526,21 @@ function update() {
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
 
+        //modal detalles de cada película
+        document.querySelectorAll(".iucontrol.movie button.details").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const movie = Pmgr.resolve(id);
+                const movieData = document.querySelector("#movieDetails");
+                movieData.querySelector(`img`).src = `${serverUrl}poster/${movie.imdb}`;
+                movieData.querySelector(`h2`).innerHTML = movie.name;
+                movieData.querySelector(`label1`).innerHTML = movie.director;
+                movieData.querySelector(`label2`).innerHTML = movie.labels;
+                movieData.querySelector(`label3`).innerHTML = movie.year;
+                movieData.querySelector(`label4`).innerHTML = movie.minutes;
+                
+                modalDetailsMovie.show(); // ya podemos mostrar el formulario
+            }));
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -498,6 +564,8 @@ function update() {
 // modales, para poder abrirlos y cerrarlos desde código JS
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
+const modalDetailsMovie = new bootstrap.Modal(document.querySelector('#movieDetailsModal'));
+
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
@@ -595,10 +663,13 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
 window.modalRateMovie = modalRateMovie;
+window.modalDetailsMovie = modalDetailsMovie;
+
 window.update = update;
 window.login = login;
 window.userId = userId;
 window.Pmgr = Pmgr;
+window.isAdmin = isAdmin;
 
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)

@@ -66,3 +66,9 @@ fieldset.rating,
 
 
 /** fin CSS para controles de estrellas */
+
+.movie-info {
+    border: black solid .15rem;
+    border-radius: .5rem;
+    padding: .5rem;
+}
