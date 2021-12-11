@@ -99,8 +99,75 @@ function createMovieItem(movie) {
     <div class="card" data-id="${movie.id}">
     <div class="card-header"">
         <h4 class="mb-0" title="${movie.id}">
-            ${movie.name} <small><i>(${movie.year})</i></small>
+            <a data-bs-toggle="modal" data-bs-target="#details-modal">${movie.name}</a> <small><i>(${movie.year})</i></small>
         </h4>
+    </div>
+
+    <div class="modal fade bd-example-modal-xl fade" id="details-modal" tabindex="-1" aria-labelledby="details-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="details-modalLabel">Detalles: ${movie.name}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:orange">"${movie.name}"</h4>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/ style="width:200px;height:200px;">
+                            </div>
+                            <div class="col">
+                                <p>Director: ${movie.director}</p>
+                                <p>Tags: Cómo saco los tags? :'v </p>
+                                <p>Año: ${movie.year}</p>
+                                <p>Duración: ${movie.minutes} min</p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset class="estrellitas rating">
+                                    <label title="Atómico - 5 estrellas">
+                                            <input type="radio" name="rating" value="5" />
+                                        </label>
+    
+                                    <label title="Muy buena - 4 estrellas">
+                                            <input type="radio" name="rating" value="4" />
+                                        </label>
+    
+                                    <label title="Pasable - 3 estrellas">
+                                            <input type="radio" name="rating" value="3" />
+                                        </label>
+    
+                                    <label title="Más bien mala - 2 estrellas">
+                                            <input type="radio" name="rating" value="2" />
+                                        </label>
+    
+                                    <label title="Horrible - 1 estrella">
+                                            <input type="radio" name="rating" value="1" />
+                                        </label>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p><h3>Sinopsis</h3></p>
+                                <hr class="solid">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Aquí va la sinopsis :v</p>
+                            </div>
+                        </div>
+                    </div>             
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div>
