@@ -73,4 +73,10 @@ fieldset.rating,
     padding: .5rem;
 }
 
-
+.elementos-centrados {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    margin-right: 400px;
+    margin-left: 400px;
+}

@@ -150,20 +150,43 @@ function createGroupItem(group) {
         </h4>
     </div>
     <div class="card-body pcard">
-        <div class="row-sm-11">
-            <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
-            ${allMembers}
-            ${allPending}
-        </div>
-        <div class="row-sm-1 iucontrol group">
-            <button class="rm" data-id="${group.id}">🗑️</button>
-            <button class="edit" data-id="${group.id}">✏️</button>
+        <div class="row">
+            <div class="col">
+                <img src="/src/main/resources/static/img/icono_grupo.jpg" width="100" height="100"/>
+            </div>
+            <div class="col-md-6">
+                <p>Fecha de creación: ${group.fecha}</p>
+                <div class="row-sm-11">
+                    <p>Participantes:
+                        <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
+                        ${allMembers}
+                        ${allPending}
+                    </p>        
+                </div>
+                <p>Género favorito: ${group.favorito}</p>
+            </div>
+            <div class="col">
+                <div class="dropdown">
+                    <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownGroupsButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
+                        <li><a class="dropdown-item" data-id="${group.id}">🗑️</a></li>
+                        <li><a class="dropdown-item" data-id="${group.id}">✏️</a></li>
+                        <li><a class="dropdown-item" href="#">🕵🏻‍♀️ (Ver detalles)</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>              
     </div>
     </div>
 `;
 }
+
 
 function createUserItem(user) {
     let allGroups = user.groups.map((id) =>
@@ -178,21 +201,21 @@ function createUserItem(user) {
 
     return `
     <div class="card">
-    <div class="card-header">
-        <h4 class="mb-0" title="${user.id}">
-            <b class="pcard">${user.username}</b>
-        </h4>
-    </div>
-    <div class="card-body pcard">
-        <div class="row-sm-11">
-            ${allGroups}
-            ${allPending}
-        <div>
-        <div class="row-sm-1 iucontrol user">
-            <button class="rm" data-id="${user.id}">🗑️</button>
-            <button class="edit" data-id="${user.id}">✏️</button>
-        </div>        
-    </div>
+        <div class="card-header">
+            <h4 class="mb-0" title="${user.id}">
+                <b class="pcard">${user.username}</b>
+            </h4>
+        </div>
+        <div class="card-body pcard">
+            <div class="row-sm-11">
+                ${allGroups}
+                ${allPending}
+            </div>
+            <div class="row-sm-1 iucontrol user">
+                <button class="rm" data-id="${user.id}">🗑️</button>
+                <button class="edit" data-id="${user.id}">✏️</button>
+            </div>        
+        </div>
     </div>
 `;
 }
