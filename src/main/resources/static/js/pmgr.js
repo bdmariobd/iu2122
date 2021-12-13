@@ -97,33 +97,34 @@ function createMovieItem(movie) {
 
     return `
     <div class="card" data-id="${movie.id}">
-    <div class="card-header"">
-        <h4 class="mb-0" title="${movie.id}">
-            <a data-bs-toggle="modal" data-bs-target="#details-modal">${movie.name}</a> <small><i>(${movie.year})</i></small>
-        </h4>
-    </div>
-    <div>
-        <div class="card-body pcard">
-            <div class="row">
-                <div class="col-auto">
-                    <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/>
-                </div>
-                <div class="col">
-                    <div class="row-12">
-                        ${movie.director} / ${movie.actors} (${movie.minutes} min.)
-                    </div>        
-                    <div class="row-12">
-                        ${ratings}
-                    </div>        
-                    <div class="iucontrol movie">
-                        <button class="rm" data-id="${movie.id}">🗑️</button>
-                        <button class="edit" data-id="${movie.id}">✏️</button>
-                        <button class="rate" data-id="${movie.id}">⭐</button>
-                    </div>  
+        <div class="card-header">
+            <h4 class="mb-0" title="${movie.id}">
+                <a>${movie.name}</a> <small><i>(${movie.year})</i></small>
+            </h4>
+        </div>
+        <div>
+            <div class="card-body pcard">
+                <div class="row">
+                    <div class="col-auto">
+                        <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/>
+                    </div>
+                    <div class="col">
+                        <div class="row-12">
+                            ${movie.director} / ${movie.actors} (${movie.minutes} min.)
+                        </div>        
+                        <div class="row-12">
+                            ${ratings}
+                        </div>        
+                        <div class="iucontrol movie">
+                            <button class="rm" data-id="${movie.id}">🗑️</button>
+                            <button class="edit" data-id="${movie.id}">✏️</button>
+                            <button class="rate" data-id="${movie.id}">⭐</button>
+                            <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
+                        </div>  
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
  `;
 }
@@ -550,6 +551,8 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
         c.style.display = ok ? '' : 'none';
     });
 })
+
+
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;

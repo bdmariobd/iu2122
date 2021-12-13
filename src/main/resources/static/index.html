@@ -109,20 +109,21 @@
     <!-- Modal con los detalles de la pelicula películas -->
     <div class="modal fade" id="movieDetailsModal" tabindex="-1" aria-labelledby="movieDetailsLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content modal-lg">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <h5 class="modal-title" id="movieDetailsLabel">Detalles de la pelicula</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- <div class="container-fluid"> -->
-                        <div class="row" id="movieDetails">
+                        <div class="row justify-content-start" id="movieDetails">
                             <!-- llenar desde JS -->
                             <div class="col">
-                                <img>
-                                <h2></h2>
+                                <img>                                
                             </div>
-                            <div class="col">
+                            
+                            <div class="col-md-auto break-text">
+                                <h2 style="color:orange" ></h2>
                                 <div class="row">
                                     <label>Director: <label1></label1></label>
                                 </div>
@@ -135,9 +136,7 @@
                                 <div class="row">
                                     <label>Duración: <label4></label4> minutos</label>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="row" id="movieRateForm">
+                                <div class="col" id="movieRateForm">
                                     <fieldset class="estrellitas" >
                                         <label title="Atómico - 5 estrellas">
                                                 <input type="radio" name="rating" value="5" />
@@ -160,35 +159,7 @@
                                             </label>
                                     </fieldset>
                                 </div>
-                            </div>
-                        </div>
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal detalles pelicula -->
-    <div class="modal fade bd-example-modal-xl fade" id="details-modal" tabindex="-1" aria-labelledby="details-modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="details-modalLabel">Detalles: ${movie.name}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4 style="color:orange">"${movie.name}"</h4>
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/ style="width:200px;height:200px;">
-                            </div>
-                            <div class="col-md-6">
-                                <p>Director: ${movie.director}</p>
-                                <p>Tags: Cómo saco los tags? :'v </p>
-                                <p>Año: ${movie.year}</p>
-                                <p>Duración: ${movie.minutes} min</p>
+                                
                             </div>
                             <div class="col">
                                 <div class="dropdown">
@@ -225,33 +196,6 @@
                                         </ul>
                                     </ul>
                                 </div>
-                                
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <fieldset class="estrellitas rating">Puntúa: 
-                                    <label title="Atómico - 5 estrellas">
-                                            <input type="radio" name="rating" value="5" />
-                                        </label>
-
-                                    <label title="Muy buena - 4 estrellas">
-                                            <input type="radio" name="rating" value="4" />
-                                        </label>
-
-                                    <label title="Pasable - 3 estrellas">
-                                            <input type="radio" name="rating" value="3" />
-                                        </label>
-
-                                    <label title="Más bien mala - 2 estrellas">
-                                            <input type="radio" name="rating" value="2" />
-                                        </label>
-
-                                    <label title="Horrible - 1 estrella">
-                                            <input type="radio" name="rating" value="1" />
-                                        </label>
-                                </fieldset>
-                                
                             </div>
                         </div>
                         <div class="row">
@@ -265,7 +209,7 @@
                                 <p>Aquí va la sinopsis :v</p>
                             </div>
                         </div>
-                    </div>             
+                    <!-- </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -275,6 +219,7 @@
         </div>
     </div>
 
+   
 
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -303,7 +248,7 @@
                         <div class="col-md-4 offset-md-10">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <div class="dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link" href="#" id="add-movie-btn" role="button" data-bs-target="#" data-bs-toggle="modal" aria-expanded="false">
                                     ➕
                                     </a>
                                 </div>
@@ -362,10 +307,7 @@
         </div>
     </nav>
 
-
    
-
-
     <div class="formularioValidado collapse collapse-vertical" id="collapse-filtros" >
         <form class="row">
             <div class="col-md-4">
@@ -427,6 +369,8 @@
         </form>
     </div>
     <!--Navtab-->
+
+ 
 
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-peliculas" role="tabpanel" aria-labelledby="pills-home-tab">
