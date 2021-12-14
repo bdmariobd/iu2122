@@ -578,6 +578,62 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
     })
 }
 
+{
+    document.querySelector("#movieSearch").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.name.toLowerCase().indexOf(v) >= 0;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+
+    document.querySelector("#movieSearchByDirector").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.director.toLowerCase().indexOf(v) >= 0;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+
+    document.querySelector("#movieSearchByYear").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.year == v;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+
+    document.querySelector("#movieSearchByMinutesMin").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.minutes >= v;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+
+    document.querySelector("#movieSearchByMinutesMax").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.minutes <= v;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+
+
+
+}
+
+
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
