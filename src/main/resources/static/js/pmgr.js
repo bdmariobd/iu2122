@@ -311,7 +311,8 @@ function nuevaPelicula(formulario) {
 
 function nuevoGrupo(formulario) {
     const group = new Pmgr.Group(-1,
-        formulario.querySelector('input[name="name"]').value
+        formulario.querySelector('input[name="name"]').value,
+        userId
     );
     Pmgr.addGroup(group).then(() => {
         formulario.reset() // limpia el formulario si todo OK
@@ -351,7 +352,7 @@ function modificaGrupo(formulario) {
         formulario.querySelector('input[name="requests"]').value);
     Pmgr.setGroup(group).then(() => {
         formulario.reset() // limpia el formulario si todo OK
-        
+
         // aquí quizás falta algo
 
         update();
@@ -587,8 +588,8 @@ const login = (username, password) => {
         .then(d => {
             console.log("login ok!", d);
             update(d);
-            userId = Pmgr.state.users.find(u =>
-                u.username == username).id;
+            /* userId = Pmgr.state.users.find(u =>
+                u.username == username).id; */
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
@@ -596,11 +597,15 @@ const login = (username, password) => {
         });
 }
 
-// -- IMPORTANTE --
-login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
+let username = "g7"
+let pass = "8RKrb"
+    // -- IMPORTANTE --
+login(username, pass); // <-- tu nombre de usuario y password aquí
 //   y puedes re-logearte como alguien distinto desde  la consola
 //   llamando a login() con otro usuario y contraseña
-{
+
+userId = Pmgr.state.users.find(u =>
+    u.username == username).id; {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
      * en un bloque separado para que las constantes y variables no salgan de aquí, 
@@ -699,14 +704,14 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
 
 {
     // formulario de añadir grupos
-     const f = document.querySelector("#addGroup");
-     // botón de enviar
-     f.querySelector("button[type='submit']").addEventListener('submit', (e) => {
-         if (f.checkValidity()) {
-             e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-             nuevoGrupo(f); // añade el grupo según los campos previamente validados
-         }
-     });
+    const f = document.querySelector("#addGroup");
+    // botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevoGrupo(f); // añade el grupo según los campos previamente validados
+        }
+    });
 }
 
 
