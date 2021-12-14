@@ -566,16 +566,17 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
 /**
  * búsqueda básica de películas, por título
  */
-document.querySelector("#movieSearch").addEventListener("input", e => {
-    const v = e.target.value.toLowerCase();
-    document.querySelectorAll("#movies div.card").forEach(c => {
-        const m = Pmgr.resolve(c.dataset.id);
-        // aquí podrías aplicar muchos más criterios
-        const ok = m.name.toLowerCase().indexOf(v) >= 0;
-        c.style.display = ok ? '' : 'none';
-    });
-})
-
+{
+    document.querySelector("#movieSearch").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.name.toLowerCase().indexOf(v) >= 0;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+}
 
 
 // cosas que exponemos para poder usarlas desde la consola
