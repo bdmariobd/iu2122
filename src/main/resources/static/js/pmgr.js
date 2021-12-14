@@ -122,6 +122,8 @@ function createMovieItem(movie) {
                             <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
                         </div>  -->
                     </div>
+
+                    <!--bsxh-->
                     <div class="col">
                     <div class="row-12">
                         <div class="dropdown">
