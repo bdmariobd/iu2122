@@ -570,6 +570,7 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
     document.querySelector("#movieSearch").addEventListener("input", e => {
         const v = e.target.value.toLowerCase();
         document.querySelectorAll("#movies div.card").forEach(c => {
+            if (c.style.display === 'none') return;
             const m = Pmgr.resolve(c.dataset.id);
             // aquí podrías aplicar muchos más criterios
             const ok = m.name.toLowerCase().indexOf(v) >= 0;
@@ -578,60 +579,31 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
     })
 }
 
+/**
+ * Busqueda por filtros
+ */
 {
-    document.querySelector("#movieSearch").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
+    document.querySelector("#applyMovieFilters").addEventListener("click", e => {
+        e.preventDefault();
+        const director = document.querySelector("#movieSearchByDirector");
+        const year = document.querySelector("#movieSearchByYear");
+        const minMin = document.querySelector("#movieSearchByMinutesMin");
+        const minMax = document.querySelector("#movieSearchByMinutesMax");
+        const tag = document.querySelector("#movieSearchByTag");
+        const tagGroup = document.querySelector("#movieSearchByTagGroup");
         document.querySelectorAll("#movies div.card").forEach(c => {
             const m = Pmgr.resolve(c.dataset.id);
             // aquí podrías aplicar muchos más criterios
-            const ok = m.name.toLowerCase().indexOf(v) >= 0;
+
+            const ok = director.value === '' ? true : m.director.toLowerCase().indexOf(director.value) >= 0 &&
+                director.value === '' ? true : m.year == year.value &&
+                minMin.value === '' ? true : m.minutes >= minMin.value &&
+                minMax.value === '' ? true : m.minutes <= minMax.value;
             c.style.display = ok ? '' : 'none';
         });
     })
-
-    document.querySelector("#movieSearchByDirector").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-            const ok = m.director.toLowerCase().indexOf(v) >= 0;
-            c.style.display = ok ? '' : 'none';
-        });
-    })
-
-    document.querySelector("#movieSearchByYear").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-            const ok = m.year == v;
-            c.style.display = ok ? '' : 'none';
-        });
-    })
-
-    document.querySelector("#movieSearchByMinutesMin").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-            const ok = m.minutes >= v;
-            c.style.display = ok ? '' : 'none';
-        });
-    })
-
-    document.querySelector("#movieSearchByMinutesMax").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-            const ok = m.minutes <= v;
-            c.style.display = ok ? '' : 'none';
-        });
-    })
-
-
-
 }
+
 
 
 
