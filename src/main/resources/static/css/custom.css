@@ -80,3 +80,7 @@ fieldset.rating,
     margin-right: 400px;
     margin-left: 400px;
 }
+
+#movies .card .card-header {
+    cursor: pointer;
+}

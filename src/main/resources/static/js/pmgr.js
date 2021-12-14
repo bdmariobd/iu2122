@@ -97,7 +97,7 @@ function createMovieItem(movie) {
 
     return `
     <div class="card" data-id="${movie.id}">
-        <div class="card-header">
+        <div class="card-header" data-id="${movie.id}">
             <h4 class="mb-0" title="${movie.id}">
                 <a>${movie.name}</a> <small><i>(${movie.year})</i></small>
             </h4>
@@ -442,9 +442,9 @@ function update() {
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
 
         //modal detalles de cada película
-        document.querySelectorAll(".iucontrol.movie button.details").forEach(b =>
+        document.querySelectorAll(".iucontrol.movie button.details, #movies .card .card-header").forEach(b =>
             b.addEventListener('click', e => {
-                const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const id = e.currentTarget.dataset.id; // lee el valor del atributo data-id del boton
                 const movie = Pmgr.resolve(id);
                 const movieData = document.querySelector("#movieDetails");
                 movieData.querySelector(`img`).src = `${serverUrl}poster/${movie.imdb}`;
@@ -453,7 +453,7 @@ function update() {
                 movieData.querySelector(`label2`).innerHTML = movie.labels;
                 movieData.querySelector(`label3`).innerHTML = movie.year;
                 movieData.querySelector(`label4`).innerHTML = movie.minutes;
-                
+
                 modalDetailsMovie.show(); // ya podemos mostrar el formulario
             }));
 
