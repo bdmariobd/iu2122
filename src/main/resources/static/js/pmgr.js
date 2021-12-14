@@ -236,6 +236,26 @@ function createGroupItem(group) {
                     <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
                         <li><a class="dropdown-item" data-id="${group.id}">🗑️</a></li>
                         <li><a class="dropdown-item" data-id="${group.id}">✏️</a></li>
+                        <li><a class="dropdown-item" id="reqJoinGroup" data-id="${group.id}">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve">
+                            <g>
+                            <path d="M278.461,151.423c32.608,0,59.138-26.529,59.138-59.138s-26.529-59.138-59.138-59.138s-59.138,26.529-59.138,59.138
+                            S245.853,151.423,278.461,151.423z M278.461,63.147c16.066,0,29.138,13.071,29.138,29.138c0,16.067-13.071,29.138-29.138,29.138
+                            s-29.138-13.071-29.138-29.138C249.323,76.218,262.395,63.147,278.461,63.147z"/>
+                            <path d="M123.75,150.41c41.355,0,75-33.645,75-75s-33.645-75-75-75s-75,33.645-75,75S82.395,150.41,123.75,150.41z M123.75,30.41
+                            c24.813,0,45,20.187,45,45s-20.187,45-45,45s-45-20.187-45-45S98.937,30.41,123.75,30.41z"/>
+                            <path d="M358.31,219.981c-17.411-27.072-47.244-43.558-79.849-43.558c-28.833,0-55.501,12.89-73.327,34.594
+                            c-21.772-19.047-50.252-30.607-81.384-30.607C55.514,180.41,0,235.924,0,304.16v15h223.59c-2.286,9.616-3.504,19.641-3.504,29.946
+                            c0,71.368,58.062,129.43,129.43,129.43s129.43-58.062,129.43-129.43C478.945,280.694,425.591,224.518,358.31,219.981z
+                                M31.199,289.16c7.201-44.588,45.962-78.75,92.551-78.75s85.35,34.162,92.551,78.75H31.199z M225.478,233.78
+                            c12.099-17.068,31.681-27.357,52.983-27.357c16.198,0,31.397,5.954,43.073,16.309c-31.87,7.052-59.365,25.879-77.658,51.674
+                            C240.219,259.647,233.907,245.927,225.478,233.78z M349.516,448.536c-54.826,0-99.43-44.604-99.43-99.43s44.604-99.43,99.43-99.43
+                            s99.43,44.604,99.43,99.43S404.342,448.536,349.516,448.536z"/>
+                            <polygon points="364.516,287.49 334.516,287.49 334.516,334.106 287.899,334.106 287.899,364.106 334.516,364.106 334.516,410.722 
+                            364.516,410.722 364.516,364.106 411.131,364.106 411.131,334.106 364.516,334.106 	"/>
+                            </g>
+                            </svg>Quiero unirme</a></li>
                         <li><a class="dropdown-item" href="#">🕵🏻‍♀️ (Ver detalles)</a></li>
                     </ul>
                 </div>
@@ -320,7 +340,12 @@ function nuevoGrupo(formulario) {
     });
 }
 
-
+function unirmeGrupo(idGrupo, idUsuario) {
+    const req = new Pmgr.Request(-1, idUsuario, idGrupo, Pmgr.RequestStatus.AWAITING_GROUP);
+    Pmgr.addRequest(req).then(() => {
+        update();
+    });
+}
 
 /**
  * Usa valores de un formulario para modificar una película
@@ -550,6 +575,7 @@ function update() {
                 modalDetailsMovie.show(); // ya podemos mostrar el formulario
             }));
 
+
     } catch (e) {
         console.log('Error actualizando', e);
     }
@@ -604,129 +630,140 @@ login(username, pass); // <-- tu nombre de usuario y password aquí
 //   y puedes re-logearte como alguien distinto desde  la consola
 //   llamando a login() con otro usuario y contraseña
 
-userId = Pmgr.state.users.find(u =>
-    u.username == username).id; {
-    /** 
-     * Asocia comportamientos al formulario de añadir películas 
-     * en un bloque separado para que las constantes y variables no salgan de aquí, 
-     * manteniendo limpio el espacio de nombres del fichero
-     */
-    const f = document.querySelector("#addMovie form");
-    // botón de enviar
-    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
-        if (f.checkValidity()) {
-            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-            nuevaPelicula(f); // añade la pelicula según los campos previamente validados
-        }
-    });
-    // botón de generar datos (sólo para pruebas)
-    f.querySelector("button.generar").addEventListener('click',
-        (e) => generaPelicula(f)); // aquí no hace falta hacer nada raro con el evento
-} {
-    /**
-     * formulario para modificar películas
-     */
-    const f = document.querySelector("#movieEditForm");
-    // botón de enviar
-    document.querySelector("#movieEdit button.edit").addEventListener('click', e => {
-        console.log("enviando formulario!");
-        if (f.checkValidity()) {
-            modificaPelicula(f); // modifica la pelicula según los campos previamente validados
-        } else {
-            e.preventDefault();
-            f.querySelector("button[type=submit]").click(); // fuerza validacion local
-        }
-    });
-} {
-    /**
-     * formulario para evaluar películas; usa el mismo modal para añadir y para editar
-     */
-    const f = document.querySelector("#movieRateForm");
-    // botón de enviar
-    document.querySelector("#movieRate button.edit").addEventListener('click', e => {
-        console.log("enviando formulario!");
-        if (f.checkValidity()) {
-            if (f.querySelector("input[name=id]").value == -1) {
-                nuevoRating(f);
-            } else {
-                modificaRating(f); // modifica la evaluación según los campos previamente validados
+userId = Pmgr.state.users.find(u => u.username == username).id;
+console.log("tu id es" + userId);
+
+document.onload(() => {
+    {
+        /** 
+         * Asocia comportamientos al formulario de añadir películas 
+         * en un bloque separado para que las constantes y variables no salgan de aquí, 
+         * manteniendo limpio el espacio de nombres del fichero
+         */
+        const f = document.querySelector("#addMovie form");
+        // botón de enviar
+        f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+            if (f.checkValidity()) {
+                e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+                nuevaPelicula(f); // añade la pelicula según los campos previamente validados
             }
-        } else {
+        });
+        // botón de generar datos (sólo para pruebas)
+        f.querySelector("button.generar").addEventListener('click',
+            (e) => generaPelicula(f)); // aquí no hace falta hacer nada raro con el evento
+    } {
+        /**
+         * formulario para modificar películas
+         */
+        const f = document.querySelector("#movieEditForm");
+        // botón de enviar
+        document.querySelector("#movieEdit button.edit").addEventListener('click', e => {
+            console.log("enviando formulario!");
+            if (f.checkValidity()) {
+                modificaPelicula(f); // modifica la pelicula según los campos previamente validados
+            } else {
+                e.preventDefault();
+                f.querySelector("button[type=submit]").click(); // fuerza validacion local
+            }
+        });
+    } {
+        /**
+         * formulario para evaluar películas; usa el mismo modal para añadir y para editar
+         */
+        const f = document.querySelector("#movieRateForm");
+        // botón de enviar
+        document.querySelector("#movieRate button.edit").addEventListener('click', e => {
+            console.log("enviando formulario!");
+            if (f.checkValidity()) {
+                if (f.querySelector("input[name=id]").value == -1) {
+                    nuevoRating(f);
+                } else {
+                    modificaRating(f); // modifica la evaluación según los campos previamente validados
+                }
+            } else {
+                e.preventDefault();
+                f.querySelector("button[type=submit]").click(); // fuerza validacion local
+            }
+        });
+        // activa rating con estrellitas
+        stars("#movieRateForm .estrellitas");
+    }
+
+    /**
+     * búsqueda básica de películas, por título
+     */
+    {
+        document.querySelector("#movieSearch").addEventListener("input", e => {
+            const v = e.target.value.toLowerCase();
+            document.querySelectorAll("#movies div.card").forEach(c => {
+                if (c.style.display === 'none') return;
+                const m = Pmgr.resolve(c.dataset.id);
+                // aquí podrías aplicar muchos más criterios
+                const ok = m.name.toLowerCase().indexOf(v) >= 0;
+                c.style.display = ok ? '' : 'none';
+            });
+        })
+    }
+
+    /**
+     * Busqueda por filtros
+     */
+    {
+        document.querySelector("#applyMovieFilters").addEventListener("click", e => {
             e.preventDefault();
-            f.querySelector("button[type=submit]").click(); // fuerza validacion local
-        }
-    });
-    // activa rating con estrellitas
-    stars("#movieRateForm .estrellitas");
-}
+            const director = document.querySelector("#movieSearchByDirector");
+            const year = document.querySelector("#movieSearchByYear");
+            const minMin = document.querySelector("#movieSearchByMinutesMin");
+            const minMax = document.querySelector("#movieSearchByMinutesMax");
+            const tag = document.querySelector("#movieSearchByTag");
+            const tagGroup = document.querySelector("#movieSearchByTagGroup");
+            document.querySelectorAll("#movies div.card").forEach(c => {
+                const m = Pmgr.resolve(c.dataset.id);
+                // aquí podrías aplicar muchos más criterios
 
-/**
- * búsqueda básica de películas, por título
- */
-{
-    document.querySelector("#movieSearch").addEventListener("input", e => {
-        const v = e.target.value.toLowerCase();
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            if (c.style.display === 'none') return;
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-            const ok = m.name.toLowerCase().indexOf(v) >= 0;
-            c.style.display = ok ? '' : 'none';
+                const ok = director.value === '' ? true : m.director.toLowerCase().indexOf(director.value) >= 0 &&
+                    director.value === '' ? true : m.year == year.value &&
+                    minMin.value === '' ? true : m.minutes >= minMin.value &&
+                    minMax.value === '' ? true : m.minutes <= minMax.value;
+                c.style.display = ok ? '' : 'none';
+            });
+        })
+    }
+
+
+    {
+        // formulario de añadir grupos
+        const f = document.querySelector("#addGroup");
+        // botón de enviar
+        f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+            if (f.checkValidity()) {
+                e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+                nuevoGrupo(f); // añade el grupo según los campos previamente validados
+            }
         });
-    })
-}
-
-/**
- * Busqueda por filtros
- */
-{
-    document.querySelector("#applyMovieFilters").addEventListener("click", e => {
-        e.preventDefault();
-        const director = document.querySelector("#movieSearchByDirector");
-        const year = document.querySelector("#movieSearchByYear");
-        const minMin = document.querySelector("#movieSearchByMinutesMin");
-        const minMax = document.querySelector("#movieSearchByMinutesMax");
-        const tag = document.querySelector("#movieSearchByTag");
-        const tagGroup = document.querySelector("#movieSearchByTagGroup");
-        document.querySelectorAll("#movies div.card").forEach(c => {
-            const m = Pmgr.resolve(c.dataset.id);
-            // aquí podrías aplicar muchos más criterios
-
-            const ok = director.value === '' ? true : m.director.toLowerCase().indexOf(director.value) >= 0 &&
-                director.value === '' ? true : m.year == year.value &&
-                minMin.value === '' ? true : m.minutes >= minMin.value &&
-                minMax.value === '' ? true : m.minutes <= minMax.value;
-            c.style.display = ok ? '' : 'none';
-        });
-    })
-}
+    } {
+        // formulario de añadir grupos
+        // botón de enviar
+        document.querySelectorAll("#reqJoinGroup").forEach(button => {
+            button.addEventListener('click', (e) => {
+                unirmeGrupo(e.currentTarget.dataset.id, userId);
+            });
+        })
+    }
 
 
-{
-    // formulario de añadir grupos
-    const f = document.querySelector("#addGroup");
-    // botón de enviar
-    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
-        if (f.checkValidity()) {
-            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-            nuevoGrupo(f); // añade el grupo según los campos previamente validados
-        }
-    });
-}
+    // cosas que exponemos para poder usarlas desde la consola
+    window.modalEditMovie = modalEditMovie;
+    window.modalRateMovie = modalRateMovie;
+    window.modalDetailsMovie = modalDetailsMovie;
 
+    window.update = update;
+    window.login = login;
+    window.userId = userId;
+    window.Pmgr = Pmgr;
+    window.isAdmin = isAdmin;
 
-
-// cosas que exponemos para poder usarlas desde la consola
-window.modalEditMovie = modalEditMovie;
-window.modalRateMovie = modalRateMovie;
-window.modalDetailsMovie = modalDetailsMovie;
-
-window.update = update;
-window.login = login;
-window.userId = userId;
-window.Pmgr = Pmgr;
-window.isAdmin = isAdmin;
-
-// ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
-// ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
-// Pmgr.populate();
+    // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
+    // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
+    // Pmgr.populate();
+})
