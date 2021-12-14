@@ -431,23 +431,61 @@
             </div>
         </div> -->
 
-        <!-- text-white " > -->
         <div class="tab-pane fade" id="pills-mis-grupos" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-            <label></label>
-            <!-- Esto es lamentable, ya lo cambiaré -->
-            <div class="d-grid gap-2 col-4 mx-auto">
-                <button type="button" class="btn btn-primary btn-lg">
+            <!-- <label></label> -->
+            <div class="d-grid gap-2 col-4 mx-auto">    
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalAddGroup">
                     Añadir grupo
                 </button>
             </div>
             <label></label>
-            <!-- Esto es lamentable, ya lo cambiaré -->
 
             <div id="groups">
             </div>
 
         </div>
+
+        <div class="modal fade" id="modalAddGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="addGroup" class="formularioValidado">
+                        <div class="modal-body">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" name="name" placeholder="Género preferido" required>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Crear</button>
+                        </div>
+                    </div> -->
+                    <form id="addGroup" class="formularioValidado">
+                        <div class="mb-2">
+                            <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Crear</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+
+
         <div class="tab-pane fade" id="pills-otros-grupos" role="tabpanel" aria-labelledby="pills-contact-tab">
             <div id="users">
             </div>

@@ -308,6 +308,19 @@ function nuevaPelicula(formulario) {
     });
 }
 
+
+function nuevoGrupo(formulario) {
+    const group = new Pmgr.Group(-1,
+        formulario.querySelector('input[name="name"]').value
+    );
+    Pmgr.addGroup(group).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        update();
+    });
+}
+
+
+
 /**
  * Usa valores de un formulario para modificar una película
  * @param {Element} formulario para con los valores a subir
@@ -327,6 +340,24 @@ function modificaPelicula(formulario) {
         update();
     }).catch(e => console.log(e));
 }
+
+
+function modificaGrupo(formulario) {
+    const group = new Pmgr.Group(
+        formulario.querySelector('input[name="id"]').value,
+        formulario.querySelector('input[name="name"]').value,
+        formulario.querySelector('input[name="owner"]').value,
+        formulario.querySelector('input[name="members"]').value,
+        formulario.querySelector('input[name="requests"]').value);
+    Pmgr.setGroup(group).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        
+        // aquí quizás falta algo
+
+        update();
+    }).catch(e => console.log(e));
+}
+
 
 /**
  * Usa valores de un formulario para añadir un rating
@@ -665,6 +696,18 @@ login("g7", "8RKrb"); // <-- tu nombre de usuario y password aquí
     })
 }
 
+
+{
+    // formulario de añadir grupos
+     const f = document.querySelector("#addGroup");
+     // botón de enviar
+     f.querySelector("button[type='submit']").addEventListener('submit', (e) => {
+         if (f.checkValidity()) {
+             e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+             nuevoGrupo(f); // añade el grupo según los campos previamente validados
+         }
+     });
+}
 
 
 
