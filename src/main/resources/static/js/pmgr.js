@@ -480,7 +480,8 @@ function update() {
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 const modalDetailsMovie = new bootstrap.Modal(document.querySelector('#movieDetailsModal'));
-
+/* const modalAddMovie = new bootstrap.Modal(document.querySelector('#movieAddModal'));
+ */
 
 // si lanzas un servidor en local, usa http://localhost:8080/
 const serverUrl = "http://gin.fdi.ucm.es/iu/";
