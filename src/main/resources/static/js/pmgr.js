@@ -97,7 +97,7 @@ function createMovieItem(movie) {
 
     return `
     <div class="card" data-id="${movie.id}">
-        <div class="card-header" data-id="${movie.id}">
+        <div class="card-header" id="openMovieDetails" data-id="${movie.id}">
             <h4 class="mb-0" title="${movie.id}">
                 <a>${movie.name}</a> <small><i>(${movie.year})</i></small>
             </h4>
@@ -205,7 +205,7 @@ function createGroupItem(group) {
 
     return `
     <div class="card">
-    <div class="card-header" id="openMovieDetails">
+    <div class="card-header">
         <h4 class="mb-0" title="${group.id}">
             <b class="pcard">${group.name}</b>
         </h4>
