@@ -20,7 +20,7 @@ Jaime Madriñán Fernández
 ¿?
 
 - Vista admin/usuario
-- Mi perfil
+- Mi perfil??
 
 # Cambios con respecto a la práctica 5
 ¿Barra de navegación -> menú grupos?
@@ -30,11 +30,11 @@ Jaime Madriñán Fernández
 - Editar película
 - Ver detalles (muestra más información sobre una película)
 
-# Cambios 15/12 0:35
+# Cambios 15/12
 - Barra de título de las tarjetas de películas --> Color naranja
 - Iconos de Añadir película y de Grupos --> Cambiados a iconos svg
 - Editar y detalles funcionan
 - Añadido modal de confirmación para eliminar película
     - Pero no está enlazado con la funcionalidad de borrar
 - La imagen de la peli ya no es un thumbnail (porque quedaba demasiado pequeño)
-- Icono y nombre de la página web: MovieRater7
+- Icono y nombre de la página web: MovieRater
