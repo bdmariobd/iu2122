@@ -237,15 +237,30 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content ">
                 <div class="modal-header" style="background-color:rgb(255, 92, 92)">
-                    <h3>¿Confirmar borrado definitivo?</h3>
+                    <h3>¿Confirmar borrado definitivo de <strong id="movieName"></strong>?</h3>
                 </div>
                 <div class="modal-body">
                     ¡¡Esta acción es irreversible!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Confirmar</button>
+                    <button id="deleteMovie" type="button" class="btn btn-primary">Confirmar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast confirmacion borrado-->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="deleteMovieToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/777/777242.png" class="rounded me-2" alt="icono peli">
+                <strong class="me-auto">MovieRater</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Has borrado la pelicula <strong id="movieName"></strong>
             </div>
         </div>
     </div>
