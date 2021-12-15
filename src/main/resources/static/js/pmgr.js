@@ -127,15 +127,15 @@ function createMovieItem(movie) {
 
                     <!--bsxh-->
                     <div class="col">
-                    <div class="row-12">
-                        <div class="dropdown">
-                            <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                    </svg>
+                        <div class="row-12">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                        </svg>
                                 </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li class="dropdown-item" role="presentation">
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="dropdown-item" role="presentation">
                                         <a class="nav-link" id="openMovieDetails" data-id="${movie.id}" data-bs-toggle="tab" data-bs-target="#pills-alo" type="button" role="tab" aria-controls="home" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -166,8 +166,9 @@ function createMovieItem(movie) {
                                                 </svg>Elimina
                                         </a>
                                     </li>
-                                </div>
-                            </ul>
+                                    
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -228,33 +229,56 @@ function createGroupItem(group) {
                         </svg>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
-                        <li><a class="dropdown-item" data-id="${group.id}">🗑️</a></li>
-                        <li><a class="dropdown-item" data-id="${group.id}">✏️</a></li>
-                        <li><a class="dropdown-item" id="reqJoinGroup" data-id="${group.id}">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve">
-                            <g>
-                            <path d="M278.461,151.423c32.608,0,59.138-26.529,59.138-59.138s-26.529-59.138-59.138-59.138s-59.138,26.529-59.138,59.138
-                            S245.853,151.423,278.461,151.423z M278.461,63.147c16.066,0,29.138,13.071,29.138,29.138c0,16.067-13.071,29.138-29.138,29.138
-                            s-29.138-13.071-29.138-29.138C249.323,76.218,262.395,63.147,278.461,63.147z"/>
-                            <path d="M123.75,150.41c41.355,0,75-33.645,75-75s-33.645-75-75-75s-75,33.645-75,75S82.395,150.41,123.75,150.41z M123.75,30.41
-                            c24.813,0,45,20.187,45,45s-20.187,45-45,45s-45-20.187-45-45S98.937,30.41,123.75,30.41z"/>
-                            <path d="M358.31,219.981c-17.411-27.072-47.244-43.558-79.849-43.558c-28.833,0-55.501,12.89-73.327,34.594
-                            c-21.772-19.047-50.252-30.607-81.384-30.607C55.514,180.41,0,235.924,0,304.16v15h223.59c-2.286,9.616-3.504,19.641-3.504,29.946
-                            c0,71.368,58.062,129.43,129.43,129.43s129.43-58.062,129.43-129.43C478.945,280.694,425.591,224.518,358.31,219.981z
-                                M31.199,289.16c7.201-44.588,45.962-78.75,92.551-78.75s85.35,34.162,92.551,78.75H31.199z M225.478,233.78
-                            c12.099-17.068,31.681-27.357,52.983-27.357c16.198,0,31.397,5.954,43.073,16.309c-31.87,7.052-59.365,25.879-77.658,51.674
-                            C240.219,259.647,233.907,245.927,225.478,233.78z M349.516,448.536c-54.826,0-99.43-44.604-99.43-99.43s44.604-99.43,99.43-99.43
-                            s99.43,44.604,99.43,99.43S404.342,448.536,349.516,448.536z"/>
-                            <polygon points="364.516,287.49 334.516,287.49 334.516,334.106 287.899,334.106 287.899,364.106 334.516,364.106 334.516,410.722 
-                            364.516,410.722 364.516,364.106 411.131,364.106 411.131,334.106 364.516,334.106 	"/>
-                            </g>
-                            </svg>Quiero unirme</a></li>
-                        <li><a class="dropdown-item" href="#">🕵🏻‍♀️ (Ver detalles)</a></li>
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link" data-id="${group.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>Elimina
+                            </a>
+                        </li>
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link" data-id="${group.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                </svg>Edita
+                            </a>
+                        </li>
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link" id="reqJoinGroup" data-id="${group.id}">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve">
+                                    <g>
+                                        <path d="M278.461,151.423c32.608,0,59.138-26.529,59.138-59.138s-26.529-59.138-59.138-59.138s-59.138,26.529-59.138,59.138
+                                        S245.853,151.423,278.461,151.423z M278.461,63.147c16.066,0,29.138,13.071,29.138,29.138c0,16.067-13.071,29.138-29.138,29.138
+                                        s-29.138-13.071-29.138-29.138C249.323,76.218,262.395,63.147,278.461,63.147z"/>
+                                        <path d="M123.75,150.41c41.355,0,75-33.645,75-75s-33.645-75-75-75s-75,33.645-75,75S82.395,150.41,123.75,150.41z M123.75,30.41
+                                        c24.813,0,45,20.187,45,45s-20.187,45-45,45s-45-20.187-45-45S98.937,30.41,123.75,30.41z"/>
+                                        <path d="M358.31,219.981c-17.411-27.072-47.244-43.558-79.849-43.558c-28.833,0-55.501,12.89-73.327,34.594
+                                        c-21.772-19.047-50.252-30.607-81.384-30.607C55.514,180.41,0,235.924,0,304.16v15h223.59c-2.286,9.616-3.504,19.641-3.504,29.946
+                                        c0,71.368,58.062,129.43,129.43,129.43s129.43-58.062,129.43-129.43C478.945,280.694,425.591,224.518,358.31,219.981z
+                                            M31.199,289.16c7.201-44.588,45.962-78.75,92.551-78.75s85.35,34.162,92.551,78.75H31.199z M225.478,233.78
+                                        c12.099-17.068,31.681-27.357,52.983-27.357c16.198,0,31.397,5.954,43.073,16.309c-31.87,7.052-59.365,25.879-77.658,51.674
+                                        C240.219,259.647,233.907,245.927,225.478,233.78z M349.516,448.536c-54.826,0-99.43-44.604-99.43-99.43s44.604-99.43,99.43-99.43
+                                        s99.43,44.604,99.43,99.43S404.342,448.536,349.516,448.536z"/>
+                                        <polygon points="364.516,287.49 334.516,287.49 334.516,334.106 287.899,334.106 287.899,364.106 334.516,364.106 334.516,410.722 
+                                        364.516,410.722 364.516,364.106 411.131,364.106 411.131,334.106 364.516,334.106 	"/>
+                                    </g>
+                                </svg>Quiero unirme
+                            </a>
+                        </li>
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>Detalles   
+                            </a> 
+                        </li>
+
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>              
     </div>
