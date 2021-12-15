@@ -159,7 +159,7 @@ function createMovieItem(movie) {
                                                 </svg>Edita
                                         </a>
                                     </li>
-                                    <li class="dropdown-item" id="deleteMovie" data-id="${movie.id}" role="presentation">
+                                    <li class="dropdown-item" id="openDeleteMovie" data-id="${movie.id}" role="presentation">
                                         <a class="nav-link text-danger" id="profile-tab" data-bs-toggle="modal" data-bs-target="#movieDeleteConfirmationModal" type="button" role="tab" aria-controls="profile" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -516,7 +516,13 @@ function update() {
         document.querySelectorAll(".iucontrol.movie button.rm, #deleteMovie").forEach(b =>
             b.addEventListener('click', e => {
                 const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
+                const name = Pmgr.resolve(id).name;
                 Pmgr.rmMovie(id).then(update);
+                modalMovieDelete.hide();
+                //TOAST SE HA BORRADO
+                document.querySelector("#deleteMovieToast #movieName").innerHTML = name;
+                const toast = new bootstrap.Toast(document.querySelector("#deleteMovieToast"))
+                toast.show()
             }));
         // botones de editar películas
         document.querySelectorAll(".iucontrol.movie button.edit, #openMovieEdit").forEach(b =>
@@ -576,7 +582,6 @@ function update() {
                 let user = Pmgr.resolve(e.target.dataset.id);
                 user.password = '1234';
                 Pmgr.setUser(user);
-
                 login(user.username, '1234');
             }));
 
@@ -603,6 +608,12 @@ function update() {
             });
         })
 
+        document.querySelectorAll("#openDeleteMovie").forEach(button => {
+            button.addEventListener('click', e => {
+                document.querySelector('#movieDeleteConfirmationModal #deleteMovie').dataset.id = e.currentTarget.dataset.id;
+                document.querySelector('#movieDeleteConfirmationModal #movieName').innerHTML = Pmgr.resolve(e.currentTarget.dataset.id).name;
+            })
+        })
 
     } catch (e) {
         console.log('Error actualizando', e);
@@ -627,6 +638,8 @@ function update() {
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 const modalDetailsMovie = new bootstrap.Modal(document.querySelector('#movieDetailsModal'));
+const modalMovieDelete = new bootstrap.Modal(document.querySelector('#movieDeleteConfirmationModal'));
+
 /* const modalAddMovie = new bootstrap.Modal(document.querySelector('#movieAddModal'));
  */
 
