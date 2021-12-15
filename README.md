@@ -1,40 +1,34 @@
 # Autores
+
 Jesús Cencerrado Pedrero
 Jingru Zhao
 Mario Blanco Domínguez
 Salvio Martínez Arranz
 Jaime Madriñán Fernández
 
-# Funcionalidades que faltan
-- Eliminar película
-- Valorar y etiquetar películas
-- Toast (Mensajes de estado que aparecen en la esquina inf drch)
+# Hechos
 
-¿?
+- Añadir película
+- Eliminar película	Y CON CONFIRMACION INCLUIDA (queriamos meterla en mas sitios pero no habia mas tiempo)
+- Modificar película
+- Ver detalles película
 - Crear grupo
 - Eliminar grupo
-- Petición de integración a grupo
+- Listar todos los grupos POR UNA PARTE ESTAN LOS GRUPOS A LOS QUE YO PERTENEZCO Y POR OTRO EL RESTO DE GRUPOS
+
+# Regular
+
+- Listar películas NOS FALLAN LOS FILTROS
+- Petición de integración al grupo MUY VERDE
+
+# Sin hacer
+
+- Valorar  (se nos ha roto 🙃)
+- Etiquetar películas
 - Gestión de peticiones de integración al grupo
+  - Tenemos un problema, solo los ADMIN pueden hacer una request AWAITING_GROUP (error server), y la peticion AWAITING_USER no la entendemos
 - Eliminar a usuario de un grupo
-- Listar todos los grupos
-¿?
 
-- Vista admin/usuario
-- Mi perfil??
-
-# Cambios con respecto a la práctica 5
-¿Barra de navegación -> menú grupos?
-
-# Hechos
-- Añadir película
-- Editar película
-- Ver detalles (muestra más información sobre una película)
-
-# Cambios 15/12
-- Barra de título de las tarjetas de películas --> Color naranja
-- Iconos de Añadir película y de Grupos --> Cambiados a iconos svg
-- Editar y detalles funcionan
-- Añadido modal de confirmación para eliminar película
-    - Pero no está enlazado con la funcionalidad de borrar
-- La imagen de la peli ya no es un thumbnail (porque quedaba demasiado pequeño)
-- Icono y nombre de la página web: MovieRater
+# Cambios Práctica 5
+- Vista de "Mis grupos" y "Otros grupos" ligeramente modificada. 
+- Hemos añadido el listado de usuarios que no se contempló en la p5

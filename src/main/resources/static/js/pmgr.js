@@ -659,10 +659,10 @@ function update() {
 
                 ).join(" ");
 
-                groupDetails.querySelector("#owner").insertAdjacentHTML("beforeend", `<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>`)
-                groupDetails.querySelector("#members").insertAdjacentHTML("beforeend", allMembers);
-                groupDetails.querySelector("#req").insertAdjacentHTML("beforeend", allPending);
 
+                groupDetails.querySelector("#owner").innerHTML = `<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>`
+                groupDetails.querySelector("#members").innerHTML = allMembers;
+                groupDetails.querySelector("#req").innerHTML = allPending;
                 modalDetailsgroup.show(); // ya podemos mostrar el formulario
             }));
         //botones de unirse al grupo
