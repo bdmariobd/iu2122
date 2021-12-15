@@ -295,6 +295,7 @@ function createUserItem(user) {
             <div class="row-sm-1 iucontrol user">
                 <button class="rm" data-id="${user.id}">🗑️</button>
                 <button class="edit" data-id="${user.id}">✏️</button>
+                <button class="loginAs" data-id="${user.id}">Iniciar sesión como este usuario</button>
             </div>        
         </div>
     </div>
@@ -497,8 +498,17 @@ function update() {
 
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
-        Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
+        Pmgr.state.groups.forEach((o) => {
+            if (o.owner === userId || o.members.find(m => m === userId) != undefined)
+                appendTo("#groups", createGroupItem(o))
+        });
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
+        Pmgr.state.groups.forEach((o) => {
+            if (o.owner !== userId && o.members.find(m => m === userId) === undefined)
+                appendTo("#otros_groups", createGroupItem(o))
+        });
+        //Pmgr.state.groups.forEach(o => appendTo("#otros_groups", createGroupItem(o)));
+
         Pmgr.state.requests.filter(p => Pmgr.resolve(p.group).owner === userId).forEach(r => appendTo("#peticiones-user", createReqItem(r)));
 
         // y añadimos manejadores para los eventos de los elementos recién creados
@@ -560,6 +570,15 @@ function update() {
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
+        //boton de loguear como
+        document.querySelectorAll(".iucontrol.user button.loginAs").forEach(b =>
+            b.addEventListener('click', (e) => {
+                let user = Pmgr.resolve(e.target.dataset.id);
+                user.password = '1234';
+                Pmgr.setUser(user);
+
+                login(user.username, '1234');
+            }));
 
         //modal detalles de cada película
         document.querySelectorAll(".iucontrol.movie button.details, #openMovieDetails").forEach(b =>
@@ -622,9 +641,9 @@ const login = (username, password) => {
     Pmgr.login(username, password)
         .then(d => {
             console.log("login ok!", d);
-            update(d);
             userId = Pmgr.state.users.find(u =>
                 u.username == username).id;
+            update(d);
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
