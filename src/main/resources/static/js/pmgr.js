@@ -262,6 +262,13 @@ function createGroupItem(group) {
 `;
 }
 
+function createReqItem(req) {
+    //prueba
+    return `
+    <p>${req.id}</p>
+`;
+}
+
 function createUserItem(user) {
     let allGroups = user.groups.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).name}</span>`
@@ -486,11 +493,13 @@ function update() {
         empty("#movies");
         empty("#groups");
         empty("#users");
+        empty("#peticiones-user");
 
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
+        Pmgr.state.requests.filter(p => Pmgr.resolve(p.group).owner === userId).forEach(r => appendTo("#peticiones-user", createReqItem(r)));
 
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
@@ -742,11 +751,11 @@ login(username, pass); // <-- tu nombre de usuario y password aquí
 var toastTrigger = document.getElementById('triggerToastBtn')
 var toastLiveExample = document.getElementById('liveToast')
 if (toastTrigger) {
-  toastTrigger.addEventListener('click', function () {
-    var toast = new bootstrap.Toast(toastLiveExample)
+    toastTrigger.addEventListener('click', function() {
+        var toast = new bootstrap.Toast(toastLiveExample)
 
-    toast.show()
-  })
+        toast.show()
+    })
 }
 
 // cosas que exponemos para poder usarlas desde la consola
