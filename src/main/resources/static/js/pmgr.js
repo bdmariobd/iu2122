@@ -185,6 +185,75 @@ function createMovieItem(movie) {
                         <button class="rate" data-id="${movie.id}">⭐</button>
                         <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
 */
+function createMyGroupItem(group) {
+    let allMembers = group.members.map((id) =>
+        `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
+    ).join(" ");
+    const waitingForGroup = r => r.status.toLowerCase() == Pmgr.RequestStatus.AWAITING_GROUP;
+    let allPending = group.requests.map((id) => Pmgr.resolve(id)).map(r =>
+        `<span class="badge bg-${waitingForGroup(r) ? "warning" : "info"}"
+            title="Esperando aceptación de ${waitingForGroup(r) ? "grupo" : "usuario"}">
+            ${Pmgr.resolve(r.user).username}</span>`
+
+    ).join(" ");
+
+    return `
+    <div class="card">
+    <div class="card-header" style="background-color:orange">
+        <h4 class="mb-0" title="${group.id}">
+            <b class="pcard">${group.name}</b>
+        </h4>
+    </div>
+    <div class="card-body pcard">
+        <div class="row">
+            <div class="col">
+                <img src="/src/main/resources/static/img/icono_grupo.jpg" width="100" height="100"/>
+            </div>
+            <div class="col-md-6">
+                <p>Fecha de creación: ${group.fecha}</p>
+                <div class="row-sm-11">
+                    <p>Participantes:
+                        <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
+                        ${allMembers}
+                        ${allPending}
+                    </p>        
+                </div>
+                <p>Género favorito: ${group.favorito}</p>
+            </div>
+            <div class="col">
+                <div class="dropdown">
+                    <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownGroupsButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>Detalles   
+                            </a> 
+                        </li>
+                            
+                        <li class="dropdown-item" role="presentation">
+                            <a class="nav-link text-danger" data-id="${group.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>Elimina
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>              
+    </div>
+    </div>
+`;
+}
 
 function createGroupItem(group) {
 
@@ -529,7 +598,7 @@ function update() {
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach((o) => {
             if (o.owner === userId || o.members.find(m => m === userId) != undefined)
-                appendTo("#groups", createGroupItem(o))
+                appendTo("#groups", createMyGroupItem(o))
         });
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
         Pmgr.state.groups.forEach((o) => {
