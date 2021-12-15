@@ -228,8 +228,7 @@ function createGroupItem(group) {
                         </svg>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
-                        <li><a class="dropdown-item" data-id="${group.id}">🗑️</a></li>
-                        <li><a class="dropdown-item" data-id="${group.id}">✏️</a></li>
+                        <li><a class="dropdown-item" id="rmGroup" data-id="${group.id}">🗑️ Eliminar</a></li>
                         <li><a class="dropdown-item" id="reqJoinGroup" data-id="${group.id}">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve">
@@ -433,6 +432,11 @@ function generaPelicula(formulario) {
     }
 }
 
+function activaToast(msg) {
+    document.querySelector("#toast #toastMsg").innerHTML = msg;
+    const toast = new bootstrap.Toast(document.querySelector("#toast"))
+    toast.show()
+}
 /**
  * En un div que contenga un campo de texto de búsqueda
  * y un select, rellena el select con el resultado de la
@@ -520,9 +524,7 @@ function update() {
                 Pmgr.rmMovie(id).then(update);
                 modalMovieDelete.hide();
                 //TOAST SE HA BORRADO
-                document.querySelector("#deleteMovieToast #movieName").innerHTML = name;
-                const toast = new bootstrap.Toast(document.querySelector("#deleteMovieToast"))
-                toast.show()
+                activaToast("Se ha borrado la pelicula " + name)
             }));
         // botones de editar películas
         document.querySelectorAll(".iucontrol.movie button.edit, #openMovieEdit").forEach(b =>
@@ -571,11 +573,22 @@ function update() {
                 modalRateMovie.show(); // ya podemos mostrar el formulario
             }));
         // botones de borrar grupos
-        document.querySelectorAll(".iucontrol.group button.rm").forEach(b =>
-            b.addEventListener('click', e => Pmgr.rmGroup(e.target.dataset.id).then(update)));
+        document.querySelectorAll("#rmGroup").forEach(b =>
+            b.addEventListener('click', e => {
+                const name = Pmgr.resolve(e.target.dataset.id).name
+                Pmgr.rmGroup(e.target.dataset.id).then(update)
+                activaToast("Se ha borrado el grupo " + name)
+            }));
         // botones de borrar usuarios
-        document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
-            b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
+        document.querySelectorAll(".iucontrol.user button.rm").forEach(b => {
+            const name = Pmgr.resolve(b.dataset.id).name
+            b.addEventListener('click', e => {
+                Pmgr.rmUser(e.target.dataset.id).then(update)
+                activaToast("Se ha borrado el grupo " + name)
+            });
+
+        })
+
         //boton de loguear como
         document.querySelectorAll(".iucontrol.user button.loginAs").forEach(b =>
             b.addEventListener('click', (e) => {
@@ -583,6 +596,7 @@ function update() {
                 user.password = '1234';
                 Pmgr.setUser(user);
                 login(user.username, '1234');
+                activaToast("Te has logueado como" + user.username)
             }));
 
         //modal detalles de cada película
@@ -607,7 +621,6 @@ function update() {
                 unirmeGrupo(e.currentTarget.dataset.id, Pmgr.state.users.find(u => u.username === Pmgr.state.name).id);
             });
         })
-
         document.querySelectorAll("#openDeleteMovie").forEach(button => {
             button.addEventListener('click', e => {
                 document.querySelector('#movieDeleteConfirmationModal #deleteMovie').dataset.id = e.currentTarget.dataset.id;
@@ -779,16 +792,6 @@ login(username, pass); // <-- tu nombre de usuario y password aquí
     });
 }
 
-//Pruebas con toast
-var toastTrigger = document.getElementById('triggerToastBtn')
-var toastLiveExample = document.getElementById('liveToast')
-if (toastTrigger) {
-    toastTrigger.addEventListener('click', function() {
-        var toast = new bootstrap.Toast(toastLiveExample)
-
-        toast.show()
-    })
-}
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;

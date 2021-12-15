@@ -84,3 +84,8 @@ fieldset.rating,
 #movies .card .card-header {
     cursor: pointer;
 }
+
+.toast_icon {
+    width: 20px;
+    height: 20px;
+}
