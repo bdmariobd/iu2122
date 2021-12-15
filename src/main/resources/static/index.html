@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="css/custom.css">
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador: cámbialo -->
-    <title>Plantilla IU 2021-22</title>
+    <title>MovieRater7</title>
+
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/777/777242.png">
+    
 </head>
 
 <body>
@@ -122,7 +125,7 @@
                             <img>
                         </div>
 
-                        <div class="col-md-auto break-text">
+                        <div class="col">
                             <h2 style="color:orange"></h2>
                             <div class="row">
                                 <label>Director: <label1></label1></label>
@@ -161,7 +164,7 @@
                             </div> -->
 
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="dropdown">
                                 <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -170,23 +173,23 @@
                                     </button>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <ul class="nav nav-tabs flex-column" id="tab-detalles" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-alo" type="button" role="tab" aria-controls="home" aria-selected="false">
+                                        <li class="dropdown-item" role="presentation">
+                                            <a class="nav-link" id="openMovieRating" data-bs-toggle="modal" data-bs-target="#movieRate" type="button" role="tab" aria-controls="home" aria-selected="false">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
                                                         <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                                         <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                                     </svg>Etiqueta
                                             </a>
                                         </li>
-                                        <li class="nav-item" role="presentation">
-                                            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-wenas" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                        <li class="dropdown-item" role="presentation">
+                                            <a class="nav-link" id="openMovieEdit" data-bs-toggle="modal" data-id="${movie.id}" data-bs-target="#movieEdit" type="button" role="tab" aria-controls="profile" aria-selected="false">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                     </svg>Edita
                                             </a>
                                         </li>
-                                        <li class="nav-item" role="presentation">
+                                        <li class="dropdown-item" data-id="${movie.id}" role="presentation">
                                             <a class="nav-link text-danger" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-wenas" type="button" role="tab" aria-controls="profile" aria-selected="false">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -196,8 +199,8 @@
                                     </ul>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
+                        </div>-->
+                    </div> 
                     <div class="row">
                         <div class="col">
                             <p>
@@ -214,8 +217,7 @@
                     <!-- </div> -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
@@ -227,6 +229,8 @@
             <div class="modal-content ">
                 <div class="modal-header">
                     <h3>Añadir película</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    
                 </div>
                 <div class="modal-body">
                     <div id="addMovie" class="formularioValidado">
@@ -263,6 +267,25 @@
         </div>
     </div>
 
+
+    <!-- Modal confirmación borrado de película -->
+    <div class="modal fade" id="movieDeleteConfirmationModal" tabindex="-1" aria-labelledby="movieDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header" style="background-color:rgb(255, 92, 92)">
+                    <h3>¿Confirmar borrado definitivo?</h3>
+                </div>
+                <div class="modal-body">
+                    ¡¡Esta acción es irreversible!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -273,7 +296,7 @@
             <div class="col align-self-start">
                 <!-- nombre del sitio; es un enlace que lleva a la página principal -->
                 <a class="navbar-brand" id="home" href="index.html">
-                    🎬MovieRater
+                    🎬MovieRater7
                 </a>
             </div>
 
@@ -290,14 +313,21 @@
                         <div class="col-md-4 offset-md-10">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <div class="dropdown">
+                                    <!-- Botón de añadir pelicula -->
                                     <a class="nav-link" id="add-movie-btn" role="button" data-bs-toggle="modal" data-bs-target="#movieAddModal" aria-expanded="false">
-                                    ➕
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                          </svg>
                                     </a>
                                 </div>
                                 <!--boton usuarios-->
                                 <div class="dropdown">
                                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-target="#pills-pro" data-bs-toggle="dropdown" aria-expanded="false">
-                                        👥
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                                          </svg>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
@@ -418,10 +448,9 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-peliculas" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="container iulist">
-                <div class="accordion" id="movies">
-                </div>
+                <div class="accordion" id="movies"></div>
 
-                <!-- queremos a partir de aqui todo esto oculto -->
+                
 
             </div>
         </div>

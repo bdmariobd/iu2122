@@ -97,8 +97,8 @@ function createMovieItem(movie) {
 
     return `
     <div class="card" data-id="${movie.id}">
-        <div class="card-header" id="openMovieDetails" data-id="${movie.id}">
-            <h4 class="mb-0" title="${movie.id}">
+        <div class="card-header" id="openMovieDetails" data-id="${movie.id}" style="background-color:orange" >
+            <h4 class="mb-0" title="${movie.id}" >
                 <a>${movie.name}</a> <small><i>(${movie.year})</i></small>
             </h4>
         </div>
@@ -106,11 +106,13 @@ function createMovieItem(movie) {
             <div class="card-body pcard">
                 <div class="row">
                     <div class="col-auto">
-                        <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/>
+                        <img width="150" height="200" src="${serverUrl}poster/${movie.imdb}"/>
                     </div>
                     <div class="col">
                         <div class="row-12">
-                            ${movie.director} / ${movie.actors} (${movie.minutes} min.)
+                            <p><h5>Director: ${movie.director}</h5></p>
+                            <p>Casting: ${movie.actors}</p>
+                            <p>Duración: ${movie.minutes} min.</p>
                         </div>        
                         <div class="row-12">
                             ${ratings}
@@ -120,7 +122,7 @@ function createMovieItem(movie) {
                             <button class="edit" data-id="${movie.id}">✏️</button>
                             <button class="rate" data-id="${movie.id}">⭐</button>
                             <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
-                        </div>  -->
+                        </div> -->
                     </div>
 
                     <!--bsxh-->
@@ -133,56 +135,41 @@ function createMovieItem(movie) {
                                     </svg>
                                 </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li class="dropdown-item" id="openMovieDetails" data-id="${movie.id}" role="presentation">
-                                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-alo" type="button" role="tab" aria-controls="home" aria-selected="false">
+                                <li class="dropdown-item" role="presentation">
+                                        <a class="nav-link" id="openMovieDetails" data-id="${movie.id}" data-bs-toggle="tab" data-bs-target="#pills-alo" type="button" role="tab" aria-controls="home" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                 <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                                             </svg>Detalles
                                         </a>
                                     </li>
-                                    <li class="dropdown-item" data-id="${movie.id}" role="presentation">
-                                        <a class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-alo" type="button" role="tab" aria-controls="home" aria-selected="false">
+                                    <li class="dropdown-item" role="presentation">
+                                        <a class="nav-link" id="openMovieRating" data-bs-toggle="modal" data-bs-target="#movieRate" type="button" role="tab" aria-controls="home" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
                                                     <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
                                                     <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
                                                 </svg>Etiqueta
                                         </a>
                                     </li>
-                                    <li class="dropdown-item" data-id="${movie.id}" role="presentation">
-                                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-wenas" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <li class="dropdown-item" role="presentation">
+                                        <a class="nav-link" id="openMovieEdit" data-bs-toggle="modal" data-id="${movie.id}" data-bs-target="#movieEdit" type="button" role="tab" aria-controls="profile" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                 </svg>Edita
                                         </a>
                                     </li>
-                                    <li class="dropdown-item" data-id="${movie.id}" role="presentation">
-                                        <a class="nav-link text-danger" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-wenas" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                    <li class="dropdown-item" id="deleteMovie" data-id="${movie.id}" role="presentation">
+                                        <a class="nav-link text-danger" id="profile-tab" data-bs-toggle="modal" data-bs-target="#movieDeleteConfirmationModal" type="button" role="tab" aria-controls="profile" aria-selected="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                                 </svg>Elimina
                                         </a>
                                     </li>
-                                    <div class="iucontrol movie">
-                                    <button class="det" data-id="${movie.id}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                        </svg>
-                                    </button>
-
-                                    <button class="rm" data-id="${movie.id}">🗑️ Borrar
-                                    </button>
-                                    <button class="edit" data-id="${movie.id}">✏️</button>
-                                    <button class="rate" data-id="${movie.id}">⭐</button>
-                                    <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
                                 </div>
-                            
                             </ul>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -190,6 +177,13 @@ function createMovieItem(movie) {
  `;
 }
 
+/*
+<button class="rm" data-id="${movie.id}">🗑️ Borrar
+                        </button>
+                        <button class="edit" data-id="${movie.id}">✏️</button>
+                        <button class="rate" data-id="${movie.id}">⭐</button>
+                        <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
+*/
 
 function createGroupItem(group) {
     let allMembers = group.members.map((id) =>
@@ -500,13 +494,13 @@ function update() {
 
         // y añadimos manejadores para los eventos de los elementos recién creados
         // botones de borrar películas
-        document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
+        document.querySelectorAll(".iucontrol.movie button.rm, #deleteMovie").forEach(b =>
             b.addEventListener('click', e => {
                 const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
                 Pmgr.rmMovie(id).then(update);
             }));
         // botones de editar películas
-        document.querySelectorAll(".iucontrol.movie button.edit").forEach(b =>
+        document.querySelectorAll(".iucontrol.movie button.edit, #openMovieEdit").forEach(b =>
             b.addEventListener('click', e => {
                 const id = e.target.dataset.id; // lee el valor del atributo data-id del boton
                 const movie = Pmgr.resolve(id);
@@ -744,6 +738,16 @@ login(username, pass); // <-- tu nombre de usuario y password aquí
     });
 }
 
+//Pruebas con toast
+var toastTrigger = document.getElementById('triggerToastBtn')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', function () {
+    var toast = new bootstrap.Toast(toastLiveExample)
+
+    toast.show()
+  })
+}
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
