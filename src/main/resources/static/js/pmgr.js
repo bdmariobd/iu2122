@@ -199,7 +199,7 @@ function createGroupItem(group) {
 
     return `
     <div class="card">
-    <div class="card-header">
+    <div class="card-header" style="background-color:orange">
         <h4 class="mb-0" title="${group.id}">
             <b class="pcard">${group.name}</b>
         </h4>
@@ -282,7 +282,7 @@ function createUserItem(user) {
 
     return `
     <div class="card">
-        <div class="card-header">
+        <div class="card-header" style="background-color:orange">
             <h4 class="mb-0" title="${user.id}">
                 <b class="pcard">${user.username}</b>
             </h4>
