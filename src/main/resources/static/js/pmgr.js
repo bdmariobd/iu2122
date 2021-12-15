@@ -268,7 +268,6 @@ function createGroupItem(group) {
 `;
 }
 
-
 function createUserItem(user) {
     let allGroups = user.groups.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).name}</span>`
@@ -575,19 +574,26 @@ function update() {
                 modalDetailsMovie.show(); // ya podemos mostrar el formulario
             }));
 
+        //botones de unirse al grupo
+        document.querySelectorAll("#reqJoinGroup").forEach(button => {
+            button.addEventListener('click', (e) => {
+                unirmeGrupo(e.currentTarget.dataset.id, Pmgr.state.users.find(u => u.username === Pmgr.state.name).id);
+            });
+        })
+
 
     } catch (e) {
         console.log('Error actualizando', e);
     }
 
     /* para que siempre muestre los últimos elementos disponibles */
-    activaBusquedaDropdown('#dropdownBuscablePelis',
+    /* activaBusquedaDropdown('#dropdownBuscablePelis',
         (select) => {
             empty(select);
             Pmgr.state.movies.forEach(m =>
                 appendTo(select, `<option value="${m.id}">${m.name}</option>`));
         }
-    );
+    ); */
 }
 
 //
@@ -614,8 +620,8 @@ const login = (username, password) => {
         .then(d => {
             console.log("login ok!", d);
             update(d);
-            /* userId = Pmgr.state.users.find(u =>
-                u.username == username).id; */
+            userId = Pmgr.state.users.find(u =>
+                u.username == username).id;
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
@@ -630,140 +636,126 @@ login(username, pass); // <-- tu nombre de usuario y password aquí
 //   y puedes re-logearte como alguien distinto desde  la consola
 //   llamando a login() con otro usuario y contraseña
 
-userId = Pmgr.state.users.find(u => u.username == username).id;
-console.log("tu id es" + userId);
-
-document.onload(() => {
-    {
-        /** 
-         * Asocia comportamientos al formulario de añadir películas 
-         * en un bloque separado para que las constantes y variables no salgan de aquí, 
-         * manteniendo limpio el espacio de nombres del fichero
-         */
-        const f = document.querySelector("#addMovie form");
-        // botón de enviar
-        f.querySelector("button[type='submit']").addEventListener('click', (e) => {
-            if (f.checkValidity()) {
-                e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-                nuevaPelicula(f); // añade la pelicula según los campos previamente validados
-            }
-        });
-        // botón de generar datos (sólo para pruebas)
-        f.querySelector("button.generar").addEventListener('click',
-            (e) => generaPelicula(f)); // aquí no hace falta hacer nada raro con el evento
-    } {
-        /**
-         * formulario para modificar películas
-         */
-        const f = document.querySelector("#movieEditForm");
-        // botón de enviar
-        document.querySelector("#movieEdit button.edit").addEventListener('click', e => {
-            console.log("enviando formulario!");
-            if (f.checkValidity()) {
-                modificaPelicula(f); // modifica la pelicula según los campos previamente validados
-            } else {
-                e.preventDefault();
-                f.querySelector("button[type=submit]").click(); // fuerza validacion local
-            }
-        });
-    } {
-        /**
-         * formulario para evaluar películas; usa el mismo modal para añadir y para editar
-         */
-        const f = document.querySelector("#movieRateForm");
-        // botón de enviar
-        document.querySelector("#movieRate button.edit").addEventListener('click', e => {
-            console.log("enviando formulario!");
-            if (f.checkValidity()) {
-                if (f.querySelector("input[name=id]").value == -1) {
-                    nuevoRating(f);
-                } else {
-                    modificaRating(f); // modifica la evaluación según los campos previamente validados
-                }
-            } else {
-                e.preventDefault();
-                f.querySelector("button[type=submit]").click(); // fuerza validacion local
-            }
-        });
-        // activa rating con estrellitas
-        stars("#movieRateForm .estrellitas");
-    }
-
-    /**
-     * búsqueda básica de películas, por título
+{
+    /** 
+     * Asocia comportamientos al formulario de añadir películas 
+     * en un bloque separado para que las constantes y variables no salgan de aquí, 
+     * manteniendo limpio el espacio de nombres del fichero
      */
-    {
-        document.querySelector("#movieSearch").addEventListener("input", e => {
-            const v = e.target.value.toLowerCase();
-            document.querySelectorAll("#movies div.card").forEach(c => {
-                if (c.style.display === 'none') return;
-                const m = Pmgr.resolve(c.dataset.id);
-                // aquí podrías aplicar muchos más criterios
-                const ok = m.name.toLowerCase().indexOf(v) >= 0;
-                c.style.display = ok ? '' : 'none';
-            });
-        })
-    }
-
+    const f = document.querySelector("#addMovie form");
+    // botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevaPelicula(f); // añade la pelicula según los campos previamente validados
+        }
+    });
+    // botón de generar datos (sólo para pruebas)
+    f.querySelector("button.generar").addEventListener('click',
+        (e) => generaPelicula(f)); // aquí no hace falta hacer nada raro con el evento
+} {
     /**
-     * Busqueda por filtros
+     * formulario para modificar películas
      */
-    {
-        document.querySelector("#applyMovieFilters").addEventListener("click", e => {
+    const f = document.querySelector("#movieEditForm");
+    // botón de enviar
+    document.querySelector("#movieEdit button.edit").addEventListener('click', e => {
+        console.log("enviando formulario!");
+        if (f.checkValidity()) {
+            modificaPelicula(f); // modifica la pelicula según los campos previamente validados
+        } else {
             e.preventDefault();
-            const director = document.querySelector("#movieSearchByDirector");
-            const year = document.querySelector("#movieSearchByYear");
-            const minMin = document.querySelector("#movieSearchByMinutesMin");
-            const minMax = document.querySelector("#movieSearchByMinutesMax");
-            const tag = document.querySelector("#movieSearchByTag");
-            const tagGroup = document.querySelector("#movieSearchByTagGroup");
-            document.querySelectorAll("#movies div.card").forEach(c => {
-                const m = Pmgr.resolve(c.dataset.id);
-                // aquí podrías aplicar muchos más criterios
-
-                const ok = director.value === '' ? true : m.director.toLowerCase().indexOf(director.value) >= 0 &&
-                    director.value === '' ? true : m.year == year.value &&
-                    minMin.value === '' ? true : m.minutes >= minMin.value &&
-                    minMax.value === '' ? true : m.minutes <= minMax.value;
-                c.style.display = ok ? '' : 'none';
-            });
-        })
-    }
-
-
-    {
-        // formulario de añadir grupos
-        const f = document.querySelector("#addGroup");
-        // botón de enviar
-        f.querySelector("button[type='submit']").addEventListener('click', (e) => {
-            if (f.checkValidity()) {
-                e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-                nuevoGrupo(f); // añade el grupo según los campos previamente validados
+            f.querySelector("button[type=submit]").click(); // fuerza validacion local
+        }
+    });
+} {
+    /**
+     * formulario para evaluar películas; usa el mismo modal para añadir y para editar
+     */
+    const f = document.querySelector("#movieRateForm");
+    // botón de enviar
+    document.querySelector("#movieRate button.edit").addEventListener('click', e => {
+        console.log("enviando formulario!");
+        if (f.checkValidity()) {
+            if (f.querySelector("input[name=id]").value == -1) {
+                nuevoRating(f);
+            } else {
+                modificaRating(f); // modifica la evaluación según los campos previamente validados
             }
+        } else {
+            e.preventDefault();
+            f.querySelector("button[type=submit]").click(); // fuerza validacion local
+        }
+    });
+    // activa rating con estrellitas
+    stars("#movieRateForm .estrellitas");
+}
+
+/**
+ * búsqueda básica de películas, por título
+ */
+{
+    document.querySelector("#movieSearch").addEventListener("input", e => {
+        const v = e.target.value.toLowerCase();
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            if (c.style.display === 'none') return;
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = m.name.toLowerCase().indexOf(v) >= 0;
+            c.style.display = ok ? '' : 'none';
         });
-    } {
-        // formulario de añadir grupos
-        // botón de enviar
-        document.querySelectorAll("#reqJoinGroup").forEach(button => {
-            button.addEventListener('click', (e) => {
-                unirmeGrupo(e.currentTarget.dataset.id, userId);
-            });
-        })
-    }
+    })
+}
+
+/**
+ * Busqueda por filtros
+ */
+{
+    document.querySelector("#applyMovieFilters").addEventListener("click", e => {
+        e.preventDefault();
+        const director = this.querySelector("#movieSearchByDirector");
+        const year = this.querySelector("#movieSearchByYear");
+        const minMin = this.querySelector("#movieSearchByMinutesMin");
+        const minMax = this.querySelector("#movieSearchByMinutesMax");
+        const tag = this.querySelector("#movieSearchByTag");
+        const tagGroup = this.querySelector("#movieSearchByTagGroup");
+        document.querySelectorAll("#movies div.card").forEach(c => {
+            const m = Pmgr.resolve(c.dataset.id);
+            // aquí podrías aplicar muchos más criterios
+            const ok = director.value === '' ? true : m.director.toLowerCase().indexOf(director.value) >= 0 &&
+                director.value === '' ? true : m.year == year.value &&
+                minMin.value === '' ? true : m.minutes >= minMin.value &&
+                minMax.value === '' ? true : m.minutes <= minMax.value;
+            c.style.display = ok ? '' : 'none';
+        });
+    })
+}
 
 
-    // cosas que exponemos para poder usarlas desde la consola
-    window.modalEditMovie = modalEditMovie;
-    window.modalRateMovie = modalRateMovie;
-    window.modalDetailsMovie = modalDetailsMovie;
+{
+    // formulario de añadir grupos
+    const f = document.querySelector("#addGroup");
+    // botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevoGrupo(f); // añade el grupo según los campos previamente validados
+        }
+    });
+}
 
-    window.update = update;
-    window.login = login;
-    window.userId = userId;
-    window.Pmgr = Pmgr;
-    window.isAdmin = isAdmin;
 
-    // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
-    // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
-    // Pmgr.populate();
-})
+// cosas que exponemos para poder usarlas desde la consola
+window.modalEditMovie = modalEditMovie;
+window.modalRateMovie = modalRateMovie;
+window.modalDetailsMovie = modalDetailsMovie;
+
+window.update = update;
+window.login = login;
+window.userId = userId;
+window.Pmgr = Pmgr;
+window.isAdmin = isAdmin;
+
+// ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
+// ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
+// Pmgr.populate();
