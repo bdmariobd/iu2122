@@ -127,9 +127,9 @@ function createMovieItem(movie) {
 
                     <!--bsxh-->
                     <div class="col">
-                        <div class="row-12">
-                            <div class="dropdown">
-                                <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton2">
+                        
+                            
+                                <button class="btn btn-default btn-circle btn-l offset-md-10" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                                         </svg>
@@ -168,8 +168,8 @@ function createMovieItem(movie) {
                                     </li>
                                     
                                 </ul>
-                            </div>
-                        </div>
+                           
+                        
                     </div>
                 </div>
             </div>
@@ -229,7 +229,7 @@ function createGroupItem(group) {
             </div>
             <div class="col">
                 <div class="dropdown">
-                    <button class="btn btn-default btn-circle btn-l offset-md-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownGroupsButton">
+                    <button class="btn btn-default btn-circle btn-l offset-md-10" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownGroupsButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                         </svg>
@@ -365,6 +365,7 @@ function nuevoGrupo(formulario) {
 }
 
 function unirmeGrupo(idGrupo, idUsuario) {
+
     const req = new Pmgr.Request(-1, idUsuario, idGrupo, Pmgr.RequestStatus.AWAITING_GROUP);
     Pmgr.addRequest(req).then(() => {
         update();
@@ -658,7 +659,7 @@ function update() {
 
                 ).join(" ");
 
-                groupDetails.querySelector("#members").insertAdjacentHTML("beforeend", `<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>`)
+                groupDetails.querySelector("#owner").insertAdjacentHTML("beforeend", `<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>`)
                 groupDetails.querySelector("#members").insertAdjacentHTML("beforeend", allMembers);
                 groupDetails.querySelector("#req").insertAdjacentHTML("beforeend", allPending);
 
