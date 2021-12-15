@@ -240,7 +240,7 @@ function createGroupItem(group) {
                         <li class="dropdown-item" role="presentation">
                             <a class="nav-link" id="reqJoinGroup" data-id="${group.id}">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve">
+                                    viewBox="0 0 478.945 478.945" width="1rem" height="1rem" xml:space="preserve" style="fill: #0a58ca;">
                                     <g>
                                         <path d="M278.461,151.423c32.608,0,59.138-26.529,59.138-59.138s-26.529-59.138-59.138-59.138s-59.138,26.529-59.138,59.138
                                         S245.853,151.423,278.461,151.423z M278.461,63.147c16.066,0,29.138,13.071,29.138,29.138c0,16.067-13.071,29.138-29.138,29.138
