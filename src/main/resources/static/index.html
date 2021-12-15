@@ -261,8 +261,7 @@
                 <!-- nombre del sitio; es un enlace que lleva a la página principal -->
                 <a class="navbar-brand" id="home" href="index.html">
                     <h4>
-                        <img src="https://cdn-icons-png.flaticon.com/512/777/777242.png" width="25" height="25">
-                        MovieRater
+                        <img src="https://cdn-icons-png.flaticon.com/512/777/777242.png" width="25" height="25"> MovieRater
                     </h4>
                 </a>
             </div>
@@ -312,6 +311,11 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#pills-usuarios" type="button" role="tab" aria-controls="home" aria-selected="false">
+                                                        Usuarios
+                                                    </a>
+                                                </li>
                                                 <hr class="dropdown-divider">
                                             </li>
                                             <li class="nav-item" role="presentation">
@@ -418,9 +422,6 @@
         <div class="tab-pane fade show active" id="pills-peliculas" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="container iulist">
                 <div class="accordion" id="movies"></div>
-
-
-
             </div>
         </div>
 
@@ -467,44 +468,48 @@
 
 
         <div class="tab-pane fade" id="pills-otros-grupos" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <div id="users">
+            <div id="otros_groups">
             </div>
         </div>
         <div class="tab-pane fade" id="pills-peticiones" role="tabpanel" aria-labelledby="pills-peticiones-tab">
 
             <!-- <label></label> -->
+            <div class="tab-pane fade" id="pills-peticiones" role="tabpanel" aria-labelledby="pills-peticiones-tab">
 
-            <div id="peticiones-user">
+                <div id="peticiones-user">
+                </div>
+
             </div>
 
         </div>
 
-    </div>
-
-
-
-
-    <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-
-
-
-
-
+        <div class="tab-pane fade" id="pills-usuarios" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div id="users">
+            </div>
         </div>
-    </div>
+
+
+        <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
 
 
 
-    <!-- JavaScript -->
 
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.bundle-5.1.3.js"></script>
 
-    <!-- todos los scripts de interaccion, aqui -->
-    <script src="js/pmgr.js" type="module"></script>
+            </div>
+        </div>
+
+
+
+        <!-- JavaScript -->
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.bundle-5.1.3.js"></script>
+
+        <!-- todos los scripts de interaccion, aqui -->
+        <script src="js/pmgr.js" type="module"></script>
 
 </body>
 
