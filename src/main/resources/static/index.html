@@ -187,6 +187,44 @@
         </div>
     </div>
 
+    <!-- Modal con los detalles de un grupo -->
+    <div class="modal fade" id="groupDetailModal" tabindex="-1" aria-labelledby="groupDetailsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="groupDetailsLabel">Detalles del grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="container-fluid"> -->
+                    <div class="row justify-content-start" id="groupDetails">
+                        <!-- llenar desde JS -->
+                        <div class="col">
+                            <h2 style="color:orange"></h2>
+                            <img src="/src/main/resources/static/img/icono_grupo.jpg" width="250" height="250">
+                        </div>
+
+                        <div class="col">
+                            <h3>Miembros</h3>
+                            <div class="col" id="members">
+                            </div>
+
+                            <h3>Peticiones:</h3>
+                            <div class="col" id="req">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal para añadir peliculas -->
     <div class="modal fade" id="movieAddModal" tabindex="-1" aria-labelledby="movieAddLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -253,7 +291,7 @@
     <!-- Toast confirmacion borrado-->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+            <div class="toast-header" style="background-color:orange">
                 <img src="https://cdn-icons-png.flaticon.com/512/777/777242.png" class="rounded me-2 toast_icon" alt="icono peli">
                 <strong class="me-auto">MovieRater</strong>
                 <!-- <small>11 mins ago</small> -->
@@ -454,7 +492,7 @@
             </div>
             <label></label>
 
-            <div id="groups">
+            <div id="groups" class="container">
             </div>
 
         </div>
@@ -482,39 +520,25 @@
 
 
         <div class="tab-pane fade" id="pills-otros-grupos" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <div id="otros_groups">
+            <div id="otros_groups" class="container">
             </div>
         </div>
         <div class="tab-pane fade" id="pills-peticiones" role="tabpanel" aria-labelledby="pills-peticiones-tab">
 
             <!-- <label></label> -->
-            <div class="tab-pane fade" id="pills-peticiones" role="tabpanel" aria-labelledby="pills-peticiones-tab">
 
-                <div id="peticiones-user">
-                </div>
 
+            <div id="peticiones-user" class="container">
             </div>
+
+
 
         </div>
 
         <div class="tab-pane fade" id="pills-usuarios" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <div id="users">
+            <div id="users" class="container">
             </div>
         </div>
-
-
-        <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-        <div class="container-fluid">
-            <div class="row">
-                <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-
-
-
-
-
-            </div>
-        </div>
-
 
 
         <!-- JavaScript -->

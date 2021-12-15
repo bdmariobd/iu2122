@@ -187,6 +187,12 @@ function createMovieItem(movie) {
 */
 
 function createGroupItem(group) {
+
+    function randomDate(start, end) {
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+
     let allMembers = group.members.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
     ).join(" ");
@@ -211,15 +217,15 @@ function createGroupItem(group) {
                 <img src="/src/main/resources/static/img/icono_grupo.jpg" width="100" height="100"/>
             </div>
             <div class="col-md-6">
-                <p>Fecha de creación: ${group.fecha}</p>
+                <p>Fecha de creación: ${randomDate(new Date(2012, 0, 1), new Date()).toLocaleDateString('es')}</p>
                 <div class="row-sm-11">
                     <p>Participantes:
-                        <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
+                        <!--<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
                         ${allMembers}
-                        ${allPending}
-                    </p>        
+                        ${allPending}-->
+                        ${group.members.length+1}
+                    </p> 
                 </div>
-                <p>Género favorito: ${group.favorito}</p>
             </div>
             <div class="col">
                 <div class="dropdown">
@@ -261,7 +267,7 @@ function createGroupItem(group) {
                             </a>
                         </li>
                         <li class="dropdown-item" role="presentation">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" id="openGroupDetails" data-id="${group.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -599,10 +605,10 @@ function update() {
             }));
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b => {
-            const name = Pmgr.resolve(b.dataset.id).name
             b.addEventListener('click', e => {
+                const name = Pmgr.resolve(e.target.dataset.id).username
                 Pmgr.rmUser(e.target.dataset.id).then(update)
-                activaToast("Se ha borrado el grupo " + name)
+                activaToast("Se ha borrado el usuario " + name)
             });
 
         })
@@ -633,6 +639,31 @@ function update() {
                 modalDetailsMovie.show(); // ya podemos mostrar el formulario
             }));
 
+        //modal detalles de cada grupo
+        document.querySelectorAll("#openGroupDetails").forEach(b =>
+            b.addEventListener('click', e => {
+                const id = e.currentTarget.dataset.id; // lee el valor del atributo data-id del boton
+                const group = Pmgr.resolve(id);
+                const groupDetails = document.querySelector("#groupDetails");
+                groupDetails.querySelector(`h2`).innerHTML = group.name;
+
+                let allMembers = group.members.map((id) =>
+                    `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
+                ).join(" ");
+                const waitingForGroup = r => r.status.toLowerCase() == Pmgr.RequestStatus.AWAITING_GROUP;
+                let allPending = group.requests.map((id) => Pmgr.resolve(id)).map(r =>
+                    `<span class="badge bg-${waitingForGroup(r) ? "warning" : "info"}"
+                    title="Esperando aceptación de ${waitingForGroup(r) ? "grupo" : "usuario"}">
+                    ${Pmgr.resolve(r.user).username}</span>`
+
+                ).join(" ");
+
+                groupDetails.querySelector("#members").insertAdjacentHTML("beforeend", `<span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>`)
+                groupDetails.querySelector("#members").insertAdjacentHTML("beforeend", allMembers);
+                groupDetails.querySelector("#req").insertAdjacentHTML("beforeend", allPending);
+
+                modalDetailsgroup.show(); // ya podemos mostrar el formulario
+            }));
         //botones de unirse al grupo
         document.querySelectorAll("#reqJoinGroup").forEach(button => {
             button.addEventListener('click', (e) => {
@@ -669,6 +700,8 @@ function update() {
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 const modalDetailsMovie = new bootstrap.Modal(document.querySelector('#movieDetailsModal'));
+const modalDetailsgroup = new bootstrap.Modal(document.querySelector('#groupDetailModal'));
+
 const modalMovieDelete = new bootstrap.Modal(document.querySelector('#movieDeleteConfirmationModal'));
 
 /* const modalAddMovie = new bootstrap.Modal(document.querySelector('#movieAddModal'));
