@@ -186,6 +186,11 @@ function createMovieItem(movie) {
                         <button class="details" data-id="${movie.id}" data-bs-toggle="modal" data-bs-target="#movieDetailsModal">🎃</button>
 */
 function createMyGroupItem(group) {
+
+    function randomDate(start, end) {
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
     let allMembers = group.members.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
     ).join(" ");
@@ -210,15 +215,12 @@ function createMyGroupItem(group) {
                 <img src="/src/main/resources/static/img/icono_grupo.jpg" width="100" height="100"/>
             </div>
             <div class="col-md-6">
-                <p>Fecha de creación: ${group.fecha}</p>
+                <p>Fecha de creación: ${randomDate(new Date(2012, 0, 1), new Date()).toLocaleDateString('es')}</p>
                 <div class="row-sm-11">
                     <p>Participantes:
-                        <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
-                        ${allMembers}
-                        ${allPending}
-                    </p>        
+                        ${group.members.length+1}
+                    </p> 
                 </div>
-                <p>Género favorito: ${group.favorito}</p>
             </div>
             <div class="col">
                 <div class="dropdown">
@@ -229,7 +231,7 @@ function createMyGroupItem(group) {
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownGroupsButton">
                         <li class="dropdown-item" role="presentation">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" id="openGroupDetails" data-id="${group.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -237,7 +239,7 @@ function createMyGroupItem(group) {
                             </a> 
                         </li>
                             
-                        <li class="dropdown-item" role="presentation">
+                        <li class="dropdown-item" id ="rmGroup" role="presentation">
                             <a class="nav-link text-danger" data-id="${group.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
